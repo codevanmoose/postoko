@@ -1,0 +1,139 @@
+{
+  "project": "Postoko",
+  "description": "AI-powered perpetual content engine for social media",
+  "version": "0.1.0",
+  "modules": {
+    "auth": {
+      "name": "Authentication Module",
+      "status": "planned",
+      "dependencies": [],
+      "exports": ["User", "Session", "authenticate", "requireAuth"],
+      "description": "Handles user authentication, OAuth flows, and session management",
+      "complexity": 10
+    },
+    "billing": {
+      "name": "Billing Module",
+      "status": "planned",
+      "dependencies": ["auth"],
+      "exports": ["Subscription", "Invoice", "createCheckout", "handleWebhook"],
+      "description": "Stripe integration for subscriptions and payment processing",
+      "complexity": 17
+    },
+    "drive": {
+      "name": "Google Drive Module",
+      "status": "planned",
+      "dependencies": ["auth"],
+      "exports": ["DriveFolder", "scanFolder", "downloadFile", "listFiles"],
+      "description": "Google Drive API integration for folder monitoring",
+      "complexity": 15
+    },
+    "social": {
+      "name": "Social Platforms Module",
+      "status": "planned",
+      "dependencies": ["auth"],
+      "exports": ["Platform", "connectPlatform", "postToInstagram", "postToTwitter", "postToPinterest"],
+      "description": "Social media platform integrations and posting APIs",
+      "complexity": 20
+    },
+    "queue": {
+      "name": "Queue Management Module",
+      "status": "planned",
+      "dependencies": ["auth", "drive"],
+      "exports": ["QueueItem", "addToQueue", "getNextItem", "updateQueueItem"],
+      "description": "Content queue management with selection algorithms",
+      "complexity": 12
+    },
+    "posting": {
+      "name": "Posting Engine Module",
+      "status": "planned",
+      "dependencies": ["queue", "social", "ai"],
+      "exports": ["PostingJob", "schedulePost", "executePost", "retryPost"],
+      "description": "Core posting engine with scheduling and retry logic",
+      "complexity": 18
+    },
+    "ai": {
+      "name": "AI Generation Module",
+      "status": "planned",
+      "dependencies": ["auth", "billing"],
+      "exports": ["generateImage", "generateCaption", "analyzeStyle", "generateHashtags"],
+      "description": "AI image generation and caption creation with OpenAI/Replicate",
+      "complexity": 22
+    },
+    "analytics": {
+      "name": "Analytics Module",
+      "status": "planned",
+      "dependencies": ["auth", "posting"],
+      "exports": ["PostMetrics", "HashtagPerformance", "getAnalytics", "trackEvent"],
+      "description": "Performance tracking and analytics dashboard data",
+      "complexity": 14
+    },
+    "dashboard": {
+      "name": "Dashboard UI Module",
+      "status": "planned",
+      "dependencies": ["auth", "queue", "analytics"],
+      "exports": ["DashboardLayout", "CalendarView", "QueueManager", "MetricsCards"],
+      "description": "Main dashboard UI components and layouts",
+      "complexity": 16
+    },
+    "settings": {
+      "name": "Settings Module",
+      "status": "planned",
+      "dependencies": ["auth"],
+      "exports": ["UserSettings", "updateSettings", "SettingsPanel"],
+      "description": "User preferences and configuration management",
+      "complexity": 8
+    },
+    "notifications": {
+      "name": "Notifications Module",
+      "status": "planned",
+      "dependencies": ["auth", "posting"],
+      "exports": ["sendEmail", "sendSlack", "NotificationPreferences"],
+      "description": "Email and Slack notifications system",
+      "complexity": 11
+    },
+    "admin": {
+      "name": "Admin Module",
+      "status": "planned",
+      "dependencies": ["auth"],
+      "exports": ["AdminDashboard", "UserManagement", "SystemStats"],
+      "description": "Internal admin tools and monitoring",
+      "complexity": 13
+    }
+  },
+  "buildOrder": [
+    "auth",
+    "settings",
+    "billing",
+    "drive",
+    "social",
+    "queue",
+    "ai",
+    "posting",
+    "notifications",
+    "analytics",
+    "dashboard",
+    "admin"
+  ],
+  "phases": {
+    "phase1": {
+      "name": "Foundation",
+      "modules": ["auth", "billing", "settings"],
+      "duration": "1 week"
+    },
+    "phase2": {
+      "name": "Core Features",
+      "modules": ["drive", "social", "queue", "posting"],
+      "duration": "2 weeks"
+    },
+    "phase3": {
+      "name": "AI Features",
+      "modules": ["ai", "notifications"],
+      "duration": "2 weeks"
+    },
+    "phase4": {
+      "name": "Polish & Launch",
+      "modules": ["analytics", "dashboard", "admin"],
+      "duration": "1 week"
+    }
+  }
+}
