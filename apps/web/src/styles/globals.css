@@ -75,6 +75,18 @@
   .glass {
     @apply bg-white/10 backdrop-blur-xl backdrop-saturate-150 border border-white/20;
   }
+  
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
 }
 
 /* Custom scrollbar */
