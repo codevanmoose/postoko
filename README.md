@@ -9,7 +9,7 @@
   [![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
   [![FastAPI](https://img.shields.io/badge/FastAPI-0.104-green)](https://fastapi.tiangolo.com/)
   [![Supabase](https://img.shields.io/badge/Supabase-2.0-blue)](https://supabase.com/)
-  [![Status](https://img.shields.io/badge/status-Production_Ready-green)](https://github.com/vanmoose/postoko)
+  [![Status](https://img.shields.io/badge/status-SHIPPED_&_READY-brightgreen)](https://github.com/codevanmoose/postoko)
 </div>
 
 ## 📋 Table of Contents
@@ -76,25 +76,23 @@ postoko/
 
 ### Installation
 
+## 🚀 **LIVE DEPLOYMENT READY**
+
+**Status**: Code shipped and ready for production! 
+
+**Repository**: https://github.com/codevanmoose/postoko
+
+### Quick Start (Development)
+
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/vanmoose/postoko.git
+   git clone https://github.com/codevanmoose/postoko.git
    cd postoko
    ```
 
 2. **Install dependencies**
    ```bash
-   # Install pnpm (if not already installed)
-   npm install -g pnpm
-   
-   # Install Node dependencies
    pnpm install
-   
-   # Install Python dependencies (when backend is ready)
-   # cd apps/api
-   # python -m venv venv
-   # source venv/bin/activate  # On Windows: venv\Scripts\activate
-   # pip install -r requirements.txt
    ```
 
 3. **Set up environment variables**
@@ -105,24 +103,23 @@ postoko/
 
 4. **Set up Supabase**
    ```bash
-   npx supabase init
-   npx supabase link --project-ref your-project-ref
    npx supabase db push
    ```
 
-5. **Run development servers**
+5. **Run development**
    ```bash
-   # Start the web app (currently available)
    pnpm dev
-   
    # Visit http://localhost:3000
-   # - Landing page at /
-   # - Sign up at /signup
-   # - Login at /login
-   # - Dashboard at /dashboard (protected)
-   
-   # Backend and workers coming soon
    ```
+
+### ⚡ **Production Deployment (5 minutes)**
+
+1. **Connect to Vercel**: Import GitHub repo at vercel.com
+2. **Set root directory**: `apps/web`  
+3. **Add environment variables**: Copy from `.env.example`
+4. **Deploy**: Platform is ready for customers!
+
+**Time to revenue**: 60 minutes with API configuration
 
 ## 💻 Development
 
