@@ -8,7 +8,13 @@
       "Bash(cd:*)",
       "Bash(git commit -m \"Initial commit: Postoko foundation with monorepo structure\n\n- Set up Turborepo monorepo with apps/, packages/, and modules/\n- Created comprehensive database schema with Supabase\n- Initialized Next.js 14 app with Tailwind CSS\n- Set up shared packages (database, types, utils)\n- Created auth module specification\n- Configured ESLint, Prettier, and TypeScript\n- Added Playwright for E2E testing\n- Complete project documentation\")",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(pnpm dev:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm install)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm build:*)",
+      "Bash(npm run build:*)"
     ],
     "deny": []
   }

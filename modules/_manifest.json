@@ -5,33 +5,33 @@
   "modules": {
     "auth": {
       "name": "Authentication Module",
-      "status": "planned",
+      "status": "in_progress",
       "dependencies": [],
-      "exports": ["User", "Session", "authenticate", "requireAuth"],
+      "exports": ["AuthProvider", "useAuth", "requireAuth", "User", "Session"],
       "description": "Handles user authentication, OAuth flows, and session management",
       "complexity": 10
     },
     "billing": {
       "name": "Billing Module",
-      "status": "planned",
+      "status": "in_progress",
       "dependencies": ["auth"],
-      "exports": ["Subscription", "Invoice", "createCheckout", "handleWebhook"],
-      "description": "Stripe integration for subscriptions and payment processing",
+      "exports": ["BillingProvider", "useBilling", "PricingTable", "Subscription", "subscriptionManager", "usageTracker"],
+      "description": "Stripe integration for subscriptions, payment processing, and usage tracking",
       "complexity": 17
     },
     "drive": {
       "name": "Google Drive Module",
-      "status": "planned",
-      "dependencies": ["auth"],
-      "exports": ["DriveFolder", "scanFolder", "downloadFile", "listFiles"],
-      "description": "Google Drive API integration for folder monitoring",
+      "status": "in_progress",
+      "dependencies": ["auth", "billing"],
+      "exports": ["DriveProvider", "useDrive", "DriveClient", "FolderScanner", "DriveConnectButton"],
+      "description": "Google Drive API integration for folder monitoring and file management",
       "complexity": 15
     },
     "social": {
       "name": "Social Platforms Module",
-      "status": "planned",
+      "status": "in_progress",
       "dependencies": ["auth"],
-      "exports": ["Platform", "connectPlatform", "postToInstagram", "postToTwitter", "postToPinterest"],
+      "exports": ["SocialProvider", "useSocial", "useSocialAccounts", "usePostTemplates", "usePlatformLimits", "OAuthManager", "PlatformFactory"],
       "description": "Social media platform integrations and posting APIs",
       "complexity": 20
     },
@@ -77,10 +77,10 @@
     },
     "settings": {
       "name": "Settings Module",
-      "status": "planned",
+      "status": "in_progress",
       "dependencies": ["auth"],
-      "exports": ["UserSettings", "updateSettings", "SettingsPanel"],
-      "description": "User preferences and configuration management",
+      "exports": ["SettingsProvider", "useSettings", "useTheme", "usePreferences", "UserPreferences", "NotificationPreferences", "PrivacySettings"],
+      "description": "User preferences, theme management, notifications, and privacy controls",
       "complexity": 8
     },
     "notifications": {

@@ -1,0 +1,25 @@
+{
+  "name": "@postoko/drive",
+  "version": "0.1.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@postoko/database": "workspace:*",
+    "@postoko/types": "workspace:*",
+    "@postoko/utils": "workspace:*",
+    "@postoko/billing": "workspace:*",
+    "googleapis": "^128.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "typescript": "^5.0.0"
+  }
+}

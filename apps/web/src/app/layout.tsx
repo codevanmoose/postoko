@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { AuthProvider } from '@postoko/auth';
+import { SettingsProvider } from '@postoko/settings';
+import { BillingProvider } from '@postoko/billing';
 import '@/styles/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -57,7 +60,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        {children}
+        <AuthProvider>
+          <SettingsProvider>
+            <BillingProvider>
+              {children}
+            </BillingProvider>
+          </SettingsProvider>
+        </AuthProvider>
       </body>
     </html>
   );

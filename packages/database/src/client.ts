@@ -1,7 +1,8 @@
 import { createClient as createSupabaseClient } from '@supabase/supabase-js';
+import { createServerClient as createSupabaseServerClient, type CookieOptions } from '@supabase/ssr';
 import type { Database } from './types';
 
-export function createClient() {
+export function createClient(cookieStore?: any) {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
@@ -9,6 +10,24 @@ export function createClient() {
     throw new Error('Missing Supabase environment variables');
   }
 
+  // Server-side client with cookie support
+  if (cookieStore) {
+    return createSupabaseServerClient<Database>(supabaseUrl, supabaseAnonKey, {
+      cookies: {
+        get(name: string) {
+          return cookieStore.get(name)?.value;
+        },
+        set(name: string, value: string, options: CookieOptions) {
+          cookieStore.set({ name, value, ...options });
+        },
+        remove(name: string, options: CookieOptions) {
+          cookieStore.set({ name, value: '', ...options });
+        },
+      },
+    });
+  }
+  
+  // Client-side client
   return createSupabaseClient<Database>(supabaseUrl, supabaseAnonKey, {
     auth: {
       autoRefreshToken: true,

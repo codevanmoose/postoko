@@ -1,10 +1,21 @@
 // Auth Module Exports
-// This file will be populated as we implement the auth functionality
 
-export * from './types';
+// Context and Provider
+export { AuthProvider } from './context/auth-context';
+
+// Hooks
 export * from './hooks';
+
+// Types
+export * from './types';
+
+// Components
 export * from './components';
-export * from './lib';
+
+// Lib
+export { supabaseAuth } from './lib/supabase-auth';
+export { requireAuth, getOptionalAuth } from './lib/api-middleware';
+export type { AuthenticatedRequest } from './lib/api-middleware';
 
 // Module metadata
 export const MODULE_NAME = 'auth';

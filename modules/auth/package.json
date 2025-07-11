@@ -1,0 +1,23 @@
+{
+  "name": "@postoko/auth",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@postoko/database": "workspace:*",
+    "@postoko/types": "workspace:*",
+    "@postoko/utils": "workspace:*",
+    "@supabase/supabase-js": "^2.39.0",
+    "next": "14.0.4",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.45",
+    "typescript": "^5.3.3"
+  }
+}
