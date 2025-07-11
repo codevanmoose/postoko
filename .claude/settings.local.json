@@ -14,7 +14,12 @@
       "Bash(npm install)",
       "Bash(pnpm add:*)",
       "Bash(pnpm build:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(git push:*)",
+      "Bash(gh repo create:*)",
+      "Bash(git remote add:*)",
+      "Bash(vercel:*)",
+      "Bash(rm:*)"
     ],
     "deny": []
   }
