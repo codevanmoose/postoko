@@ -15,7 +15,7 @@ export class QueueProcessor {
   private contentSelector = new ContentSelector();
   private socialPoster = new SocialPoster();
   private isProcessing = false;
-  private processInterval: NodeJS.Timer | null = null;
+  private processInterval: ReturnType<typeof setInterval> | null = null;
 
   // Start queue processing
   start(intervalMinutes: number = 5) {
