@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@postoko/auth';
 import { createClient } from '@postoko/database';
-import { FolderScanner, type ScanProgress } from '@postoko/drive/server';
+import { FolderScanner } from '@postoko/drive/server';
 
 export async function POST(
   request: NextRequest,
@@ -60,7 +60,7 @@ export async function POST(
     const scanResult = await scanner.scanFolder(
       folder.drive_accounts,
       folder,
-      async (progress: ScanProgress) => {
+      async (progress: any) => {
         // Could send SSE updates here if needed
         console.log(`Scan progress: ${progress.percentage}%`);
       }
