@@ -108,7 +108,18 @@ export class QueueProcessor {
 
       for (const accountId of item.social_account_ids) {
         try {
-          const postResult = await this.socialPoster.post(accountId, {
+          // Fetch the social account details
+          const { data: account, error: accountError } = await this.supabase
+            .from('social_accounts')
+            .select('*, platform:social_platforms(*)')
+            .eq('id', accountId)
+            .single();
+
+          if (accountError || !account) {
+            throw new Error(`Failed to fetch social account: ${accountError?.message || 'Not found'}`);
+          }
+
+          const postResult = await this.socialPoster.postToAccount(account, {
             caption: item.caption || '',
             media_urls: item.media_urls || [],
             hashtags: item.hashtags || [],
@@ -118,9 +129,10 @@ export class QueueProcessor {
             id: crypto.randomUUID(),
             queue_item_id: item.id,
             social_account_id: accountId,
-            success: true,
-            platform_post_id: postResult.platform_post_id,
-            post_url: postResult.post_url,
+            success: postResult.success,
+            platform_post_id: postResult.post_id,
+            post_url: postResult.url,
+            error_message: postResult.error,
             posted_at: new Date().toISOString(),
           });
         } catch (error) {
