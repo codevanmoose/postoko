@@ -251,7 +251,7 @@ export class QueueManager {
 
     // Check if any items share social accounts
     return (data || []).some(item => {
-      const sharedAccounts = item.social_account_ids.filter(id => 
+      const sharedAccounts = item.social_account_ids.filter((id: string) => 
         accountIds.includes(id)
       );
       return sharedAccounts.length > 0;
