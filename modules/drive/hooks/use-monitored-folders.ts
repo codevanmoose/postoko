@@ -12,6 +12,7 @@ export function useMonitoredFolders() {
     addFolder: context.addMonitoredFolder,
     removeFolder: context.removeMonitoredFolder,
     scanFolder: context.scanFolder,
-    refreshFolders: context.refreshFolders,
+    // Note: refreshFolders not available, using refreshAccounts which reloads all data
+    refreshFolders: context.refreshAccounts,
   };
 }
