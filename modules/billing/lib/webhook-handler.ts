@@ -1,4 +1,4 @@
-import { createServerClient } from '@postoko/database';
+import { createClient } from '@postoko/database';
 import { subscriptionManager } from './subscription-manager';
 import { invoiceManager } from './invoice-manager';
 import type Stripe from 'stripe';
@@ -8,7 +8,7 @@ export const webhookHandler = {
    * Check if event was already processed (idempotency)
    */
   async isEventProcessed(eventId: string): Promise<boolean> {
-    const supabase = createServerClient();
+    const supabase = createClient();
     
     const { data } = await supabase
       .from('stripe_events')
@@ -23,7 +23,7 @@ export const webhookHandler = {
    * Mark event as processed
    */
   async markEventProcessed(eventId: string, type: string): Promise<void> {
-    const supabase = createServerClient();
+    const supabase = createClient();
     
     await supabase
       .from('stripe_events')
@@ -39,7 +39,7 @@ export const webhookHandler = {
    * Mark event as failed
    */
   async markEventFailed(eventId: string, type: string, error: string): Promise<void> {
-    const supabase = createServerClient();
+    const supabase = createClient();
     
     await supabase
       .from('stripe_events')
@@ -106,7 +106,7 @@ export const webhookHandler = {
     
     // Update subscription status to past_due
     const subscription = invoice.subscription as string;
-    const supabase = createServerClient();
+    const supabase = createClient();
     
     await supabase
       .from('subscriptions')
@@ -121,7 +121,7 @@ export const webhookHandler = {
     const userId = customer.metadata.user_id;
     if (!userId) return;
 
-    const supabase = createServerClient();
+    const supabase = createClient();
     
     // Update user with Stripe customer ID
     await supabase
@@ -142,7 +142,7 @@ export const webhookHandler = {
   async handlePaymentMethodAttached(paymentMethod: Stripe.PaymentMethod): Promise<void> {
     if (!paymentMethod.customer) return;
     
-    const supabase = createServerClient();
+    const supabase = createClient();
     
     // Get user ID from customer
     const { data: subscription } = await supabase

@@ -1,4 +1,4 @@
-import { createServerClient } from '@postoko/database';
+import { createClient } from '@postoko/database';
 import type { Invoice } from '../types';
 import type Stripe from 'stripe';
 
@@ -7,7 +7,7 @@ export const invoiceManager = {
    * Create invoice record from Stripe invoice
    */
   async createInvoiceRecord(stripeInvoice: Stripe.Invoice): Promise<void> {
-    const supabase = createServerClient();
+    const supabase = createClient();
     
     // Get user ID from customer
     const { data: subscription } = await supabase
