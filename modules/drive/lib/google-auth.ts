@@ -29,7 +29,7 @@ export class GoogleAuth {
   generateAuthUrl(redirectUri: string, state?: string): string {
     return this.oauth2Client.generateAuthUrl({
       access_type: 'offline',
-      scope: DRIVE_SCOPES,
+      scope: [...DRIVE_SCOPES], // Spread to convert readonly array to mutable
       redirect_uri: redirectUri,
       state,
       prompt: 'consent', // Force consent to get refresh token
