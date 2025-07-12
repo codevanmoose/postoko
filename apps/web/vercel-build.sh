@@ -45,7 +45,7 @@ for module in auth settings billing drive social queue ai; do
     
     # Build the correct number of ../
     prefix=""
-    for i in $(seq 1 $((depth + 3))); do
+    for i in $(seq 1 $((depth + 2))); do
       prefix="../$prefix"
     done
     
