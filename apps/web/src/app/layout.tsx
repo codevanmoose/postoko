@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Postoko - AI-Powered Perpetual Content Engine',
-    description: 'Drop your photo. We'll post it. Daily.',
+    description: "Drop your photo. We'll post it. Daily.",
     url: 'https://postoko.com',
     siteName: 'Postoko',
     locale: 'en_US',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Postoko - AI-Powered Perpetual Content Engine',
-    description: 'Drop your photo. We'll post it. Daily.',
+    description: "Drop your photo. We'll post it. Daily.",
     creator: '@postoko',
   },
   robots: {
