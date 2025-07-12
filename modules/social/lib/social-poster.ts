@@ -34,7 +34,13 @@ export class SocialPoster {
     accounts: SocialAccount[],
     content: PostContent
   ): Promise<Array<{ platform: string; result: PostResult }>> {
-    return PlatformFactory.postToMultiple(accounts, content);
+    const results = await PlatformFactory.postToMultiplePlatforms(accounts, content);
+    
+    // Transform the results to match the expected return type
+    return results.map((r, index) => ({
+      platform: accounts[index].platform?.name || 'unknown',
+      result: r.result as PostResult
+    }));
   }
 
   /**
