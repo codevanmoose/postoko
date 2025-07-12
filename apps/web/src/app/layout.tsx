@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Postoko - AI-Powered Perpetual Content Engine',
-  description: 'Drop your photo. We'll post it. Daily. The world's first perpetual content engine.',
+  description: "Drop your photo. We'll post it. Daily. The world's first perpetual content engine.",
   keywords: 'social media automation, content scheduling, AI content generation, instagram automation',
   authors: [{ name: 'Van Moose' }],
   creator: 'Van Moose',
