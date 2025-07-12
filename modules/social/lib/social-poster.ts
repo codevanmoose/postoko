@@ -16,7 +16,7 @@ export class SocialPoster {
       }
       
       const platform = PlatformFactory.getPlatform(account.platform.name);
-      return await platform.post(account, content);
+      return await platform.createPost(account, content);
     } catch (error) {
       return {
         account_id: account.id,
@@ -46,11 +46,23 @@ export class SocialPoster {
   ): Promise<{ valid: boolean; errors?: string[] }> {
     try {
       const platform = PlatformFactory.getPlatform(platformName);
-      const errors = await platform.validateContent(content);
-      return {
-        valid: errors.length === 0,
-        errors: errors.length > 0 ? errors : undefined,
-      };
+      // For now, just check media validation
+      // TODO: Add proper content validation to PlatformAPI interface
+      if (content.media_urls && content.media_urls.length > 0) {
+        const results = await Promise.all(
+          content.media_urls.map(url => platform.validateMedia(url))
+        );
+        const errors = results
+          .filter(r => !r.valid)
+          .map(r => r.error || 'Invalid media');
+        
+        return {
+          valid: errors.length === 0,
+          errors: errors.length > 0 ? errors : undefined,
+        };
+      }
+      
+      return { valid: true };
     } catch (error) {
       return {
         valid: false,
@@ -63,10 +75,18 @@ export class SocialPoster {
    * Get optimal posting time for a platform
    */
   async getOptimalPostingTime(
-    platformName: string,
+    account: SocialAccount,
     timezone: string = 'UTC'
   ): Promise<Date> {
-    const platform = PlatformFactory.getPlatform(platformName);
-    return platform.getOptimalPostingTime(timezone);
+    if (!account.platform || !account.platform.name) {
+      // Return a default time if platform info is missing
+      return new Date();
+    }
+    
+    const platform = PlatformFactory.getPlatform(account.platform.name);
+    const times = await platform.getOptimalPostingTimes(account);
+    
+    // Return the first optimal time, or current time if none available
+    return times.length > 0 ? times[0] : new Date();
   }
 }
