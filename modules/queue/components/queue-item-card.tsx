@@ -26,7 +26,7 @@ interface QueueItemCardProps {
 
 export function QueueItemCard({ item }: QueueItemCardProps) {
   const { updateQueueItem, removeFromQueue, retryFailedItem } = useQueue();
-  const { socialAccounts } = useSocial();
+  const { accounts: socialAccounts } = useSocial();
   const [showMenu, setShowMenu] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editCaption, setEditCaption] = useState(item.caption || '');
