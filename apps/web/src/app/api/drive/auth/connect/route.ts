@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@postoko/auth';
-import { getGoogleAuth } from '@postoko/drive';
+import { getGoogleAuth } from '@postoko/drive/server';
 
 export async function POST(request: NextRequest) {
   try {

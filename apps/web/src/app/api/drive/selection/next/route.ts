@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@postoko/auth';
 import { createClient } from '@postoko/database';
-import { SelectionEngine } from '@postoko/drive';
+import { SelectionEngine } from '@postoko/drive/server';
 
 export async function POST(request: NextRequest) {
   try {

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@postoko/auth';
 import { createClient } from '@postoko/database';
-import { getGoogleAuth } from '@postoko/drive';
+import { getGoogleAuth } from '@postoko/drive/server';
 
 export async function DELETE(
   request: NextRequest,

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getGoogleAuth } from '@postoko/drive';
+import { getGoogleAuth } from '@postoko/drive/server';
 
 export async function GET(request: NextRequest) {
   try {

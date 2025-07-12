@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "main": "./index.ts",
   "types": "./index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./server": "./server.ts"
+  },
   "license": "MIT",
   "scripts": {
     "test": "jest",

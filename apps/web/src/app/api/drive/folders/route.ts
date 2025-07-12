@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@postoko/auth';
 import { createClient } from '@postoko/database';
-import { DriveClient } from '@postoko/drive';
+import { DriveClient } from '@postoko/drive/server';
 
 export async function GET(request: NextRequest) {
   try {
