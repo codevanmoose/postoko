@@ -1,7 +1,14 @@
 import { createClient } from '@postoko/database';
-import type { Database } from '@postoko/database';
 
-type FileCache = Database['public']['Tables']['file_cache']['Row'];
+// TODO: Update when database types are regenerated
+type FileCache = {
+  id: string;
+  file_id: string;
+  storage_url: string;
+  expires_at: string;
+  created_at: string;
+  updated_at: string;
+};
 
 export class CacheManager {
   private supabase;

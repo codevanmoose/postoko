@@ -2,9 +2,26 @@
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@postoko/database';
-import type { Database } from '@postoko/database';
 
-type DriveFile = Database['public']['Tables']['drive_files']['Row'];
+// TODO: Update when database types are regenerated
+type DriveFile = {
+  id: string;
+  folder_id: string;
+  drive_file_id: string;
+  name: string;
+  mime_type: string;
+  size: number;
+  md5_checksum: string;
+  created_time: string;
+  modified_time: string;
+  thumbnail_url: string | null;
+  download_url: string | null;
+  status: 'available' | 'scheduled' | 'posted';
+  post_count: number;
+  last_posted_at: string | null;
+  created_at: string;
+  updated_at: string;
+};
 
 interface UseDriveFilesOptions {
   folderId?: string;
