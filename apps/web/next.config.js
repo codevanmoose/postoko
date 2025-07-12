@@ -2,6 +2,20 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  transpilePackages: [
+    '@postoko/auth',
+    '@postoko/billing',
+    '@postoko/database',
+    '@postoko/drive',
+    '@postoko/settings',
+    '@postoko/social',
+    '@postoko/types',
+    '@postoko/utils',
+    '@postoko/queue',
+    '@postoko/ai',
+    '@postoko/analytics',
+    '@postoko/notifications',
+  ],
   images: {
     domains: [
       'lh3.googleusercontent.com', // Google profile pictures
