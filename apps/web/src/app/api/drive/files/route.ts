@@ -125,6 +125,7 @@ export async function PATCH(request: NextRequest) {
       .from('drive_files')
       .select(`
         id,
+        use_count,
         monitored_folders!inner (
           drive_accounts!inner (user_id)
         )
@@ -144,8 +145,8 @@ export async function PATCH(request: NextRequest) {
     const updateData: any = { status };
     
     if (status === 'posted') {
-      updateData.posted_count = file.posted_count + 1;
-      updateData.last_posted_at = new Date().toISOString();
+      updateData.use_count = file.use_count + 1;
+      updateData.last_used_at = new Date().toISOString();
     }
     
     const { data, error } = await supabase
