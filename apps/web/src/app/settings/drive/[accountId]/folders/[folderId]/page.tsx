@@ -37,7 +37,7 @@ export default function FolderFilesPage() {
   const { user } = useAuth();
   
   const [statusFilter, setStatusFilter] = useState<'all' | 'available' | 'scheduled' | 'posted'>('all');
-  const [selectedFile, setSelectedFile] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<any | null>(null);
   
   const { 
     files, 
@@ -132,7 +132,7 @@ export default function FolderFilesPage() {
           </Card>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {files.map((file) => {
+            {files.map((file: any) => {
               const fileStatus = file.is_available ? 'available' : 'unavailable';
               const status = statusConfig[fileStatus as keyof typeof statusConfig] || statusConfig.available;
               const StatusIcon = status.icon;
@@ -216,10 +216,10 @@ export default function FolderFilesPage() {
             >
               Close
             </Button>
-            {selectedFile.web_view_link ? (
+            {selectedFile.download_url ? (
               <img
-                src={selectedFile.web_view_link}
-                alt={selectedFile.name}
+                src={selectedFile.download_url}
+                alt={selectedFile.file_name}
                 className="max-w-full max-h-[90vh] rounded-lg"
               />
             ) : (

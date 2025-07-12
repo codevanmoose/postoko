@@ -27,7 +27,7 @@ export default function MediaSelector({
 }: MediaSelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedFolder, setSelectedFolder] = useState<string | null>(null);
-  const { files, isLoading, refreshFiles } = useDriveFiles({
+  const { files, loading: isLoading, refresh: refreshFiles } = useDriveFiles({
     folderId: selectedFolder || undefined,
     status: 'available',
   });
@@ -119,14 +119,14 @@ export default function MediaSelector({
             </div>
           ) : (
             <div className="grid grid-cols-3 md:grid-cols-4 gap-3">
-              {files.map((file) => {
-                const isSelected = selectedMedia.includes(file.web_view_link || file.thumbnail_link || '');
+              {files.map((file: any) => {
+                const isSelected = selectedMedia.includes(file.download_url || file.thumbnail_url || '');
                 const isDisabled = !isSelected && selectedMedia.length >= maxItems;
                 
                 return (
                   <button
                     key={file.id}
-                    onClick={() => toggleMedia(file.web_view_link || file.thumbnail_link || '')}
+                    onClick={() => toggleMedia(file.download_url || file.thumbnail_url || '')}
                     disabled={isDisabled}
                     className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all ${
                       isSelected 
@@ -136,10 +136,10 @@ export default function MediaSelector({
                         : 'border-transparent hover:border-primary/50'
                     }`}
                   >
-                    {file.thumbnail_link ? (
+                    {file.thumbnail_url ? (
                       <img
-                        src={file.thumbnail_link}
-                        alt={file.name}
+                        src={file.thumbnail_url}
+                        alt={file.file_name}
                         className="w-full h-full object-cover"
                       />
                     ) : (
@@ -157,7 +157,7 @@ export default function MediaSelector({
                     )}
                     
                     <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/50 to-transparent">
-                      <p className="text-xs text-white truncate">{file.name}</p>
+                      <p className="text-xs text-white truncate">{file.file_name}</p>
                     </div>
                   </button>
                 );

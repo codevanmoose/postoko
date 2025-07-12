@@ -174,7 +174,6 @@ export default function NewTemplatePage() {
             <div className="flex items-center justify-between">
               <Label htmlFor="default">Set as default template</Label>
               <Switch
-                id="default"
                 checked={isDefault}
                 onCheckedChange={setIsDefault}
               />

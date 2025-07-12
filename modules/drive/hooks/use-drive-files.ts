@@ -52,7 +52,8 @@ export function useDriveFiles(options: UseDriveFilesOptions = {}) {
       const { data, error: fetchError } = await query;
 
       if (fetchError) throw fetchError;
-      setFiles(data || []);
+      // Cast to DriveFile[] since database types are incomplete
+      setFiles((data as DriveFile[]) || []);
     } catch (err) {
       setError(err as Error);
     } finally {

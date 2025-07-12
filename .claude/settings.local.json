@@ -24,7 +24,8 @@
       "Bash(sed:*)",
       "Bash(open https://vercel.com/vanmooseprojects/postoko)",
       "Bash(npm run:*)",
-      "Bash(bash:*)"
+      "Bash(bash:*)",
+      "Bash(cat:*)"
     ],
     "deny": []
   }

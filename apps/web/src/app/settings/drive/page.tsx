@@ -13,7 +13,7 @@ export default function DriveSettingsPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { user } = useAuth();
-  const { accounts, isLoading, refreshAccounts, disconnectAccount } = useDriveAccounts();
+  const { accounts, loading: isLoading, refreshAccounts, disconnectAccount } = useDriveAccounts();
   const [isConnecting, setIsConnecting] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
@@ -131,7 +131,7 @@ export default function DriveSettingsPage() {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div>
-                      <CardTitle className="text-lg">{account.user_name}</CardTitle>
+                      <CardTitle className="text-lg">{account.display_name || account.email}</CardTitle>
                       <CardDescription>{account.email}</CardDescription>
                     </div>
                     <div className="flex gap-2">
@@ -157,8 +157,8 @@ export default function DriveSettingsPage() {
                 <CardContent>
                   <div className="text-sm text-muted-foreground">
                     <p>Connected on {new Date(account.created_at).toLocaleDateString()}</p>
-                    <p>Last synced: {account.last_refresh_at 
-                      ? new Date(account.last_refresh_at).toLocaleString()
+                    <p>Last synced: {account.updated_at 
+                      ? new Date(account.updated_at).toLocaleString()
                       : 'Never'
                     }</p>
                   </div>
