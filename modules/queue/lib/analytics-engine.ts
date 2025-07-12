@@ -119,7 +119,7 @@ export class AnalyticsEngine {
     const hourlyScores = new Map<string, { total: number; count: number }>();
 
     for (const post of history) {
-      const platform = post.social_accounts.platform;
+      const platform = (post as any).social_accounts?.platform || 'unknown';
       if (platformId && platform !== platformId) continue;
 
       const scheduledDate = new Date(post.queue_items.scheduled_for);
@@ -253,7 +253,7 @@ export class AnalyticsEngine {
       const date = new Date(post.posted_at);
       const hour = date.getHours();
       const dayOfWeek = date.getDay();
-      const platform = post.social_accounts.platform;
+      const platform = (post as any).social_accounts?.platform || 'unknown';
 
       byHour[hour] = (byHour[hour] || 0) + 1;
       byDayOfWeek[dayOfWeek] = (byDayOfWeek[dayOfWeek] || 0) + 1;
