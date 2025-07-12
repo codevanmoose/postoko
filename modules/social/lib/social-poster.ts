@@ -10,10 +10,17 @@ export class SocialPoster {
     content: PostContent
   ): Promise<PostResult> {
     try {
-      const platform = PlatformFactory.getPlatform(account.platform);
+      // Get platform name from the platform object or throw error if not available
+      if (!account.platform || !account.platform.name) {
+        throw new Error('Account platform information is missing');
+      }
+      
+      const platform = PlatformFactory.getPlatform(account.platform.name);
       return await platform.post(account, content);
     } catch (error) {
       return {
+        account_id: account.id,
+        platform: account.platform?.name || 'unknown',
         success: false,
         error: error instanceof Error ? error.message : 'Unknown error',
       };
