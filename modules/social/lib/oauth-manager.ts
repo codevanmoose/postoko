@@ -4,6 +4,9 @@ import { SocialAccount, SocialPlatform, OAuthCallback } from '../types';
 
 const ENCRYPTION_KEY = process.env.SOCIAL_ENCRYPTION_KEY || 'default-key-change-in-production';
 
+// Temporary storage for code verifiers (should use Redis in production)
+const codeVerifierStore = new Map<string, string>();
+
 export class OAuthManager {
   private supabase = createClient();
 
@@ -307,13 +310,14 @@ export class OAuthManager {
     // For now, using in-memory storage (not production-ready)
     const key = `${userId}:${platform}:verifier`;
     // This should be stored in Redis or similar
-    globalThis[key] = verifier;
+    codeVerifierStore.set(key, verifier);
   }
 
   private async getCodeVerifier(platform: string): Promise<string> {
     // Retrieve from temporary storage
     // This is a placeholder - use proper storage in production
-    return globalThis[`${platform}:verifier`] || '';
+    const key = `${platform}:verifier`;
+    return codeVerifierStore.get(key) || '';
   }
 
   private getClientId(platform: string): string {
