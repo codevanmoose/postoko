@@ -56,20 +56,14 @@ export async function POST(
     }
     
     // Start scan
-    const scanner = new FolderScanner();
-    const scanResult = await scanner.scanFolder(
-      folder.drive_accounts,
-      folder,
-      async (progress: any) => {
-        // Could send SSE updates here if needed
-        console.log(`Scan progress: ${progress.percentage}%`);
-      }
-    );
+    const { DriveClient } = await import('@postoko/drive/server');
+    const driveClient = await DriveClient.forAccount(folder.drive_accounts);
+    const scanner = new FolderScanner(driveClient, folder.drive_accounts, folder);
+    const scanResult = await scanner.scan('manual');
     
     return NextResponse.json({
       success: true,
-      scan_id: scanResult.scan_id,
-      results: scanResult.results,
+      scan: scanResult,
     });
   } catch (error: any) {
     console.error('Scan folder error:', error);
