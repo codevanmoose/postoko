@@ -73,24 +73,21 @@ for module in auth settings billing drive social queue ai; do
 done
 
 # Fix app-level imports in src/app files
-find src/app -type f \( -name "*.ts" -o -name "*.tsx" \) | while read file; do
-  temp_file="${file}.tmp"
-  
-  # Replace @postoko/ui/components imports with relative paths and fix loading-spinner
-  sed -e "s|from '@postoko/ui/components/|from '@/components/ui/|g" \
+echo "Fixing app-level imports..."
+find src/app -type f \( -name "*.ts" -o -name "*.tsx" \) -exec \
+  sed -i \
+      -e "s|from '@postoko/ui/components/|from '@/components/ui/|g" \
       -e "s|from \"@postoko/ui/components/|from \"@/components/ui/|g" \
       -e "s|/loading-spinner'|/spinner'|g" \
-      -e "s|{ LoadingSpinner }|{ Spinner }|g" \
-      -e "s|<LoadingSpinner|<Spinner|g" \
-      "$file" > "$temp_file"
-  
-  # Only replace if file changed
-  if ! cmp -s "$file" "$temp_file"; then
-    mv "$temp_file" "$file"
-  else
-    rm "$temp_file"
-  fi
-done
+      -e "s|{ LoadingSpinner }|{ Spinner as LoadingSpinner }|g" \
+      {} \;
+
+# Debug: Check if files were modified
+echo "Checking AI page imports before fix..."
+head -10 src/app/ai/page.tsx
+
+echo "Checking if UI components exist..."
+ls -la src/components/ui/ | head -10
 
 # Build with the custom tsconfig
 npm run build
