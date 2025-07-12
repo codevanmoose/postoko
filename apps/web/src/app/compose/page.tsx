@@ -140,7 +140,7 @@ export default function ComposePage() {
           hashtags,
         });
         
-        if (!validation.valid) {
+        if (!validation.valid && account.platform) {
           validation.errors.forEach(error => {
             newErrors[`${account.platform.name}_${error}`] = error;
           });
