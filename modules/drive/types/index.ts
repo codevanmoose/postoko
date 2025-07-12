@@ -201,6 +201,15 @@ export interface GoogleDriveFolder {
 }
 
 // Selection Engine Types
+export type SelectionStrategy = 'random' | 'oldest' | 'newest' | 'least_posted';
+
+export interface SelectionFilters {
+  mimeTypes?: string[];
+  minSize?: number;
+  maxSize?: number;
+  excludeUsedWithin?: number; // days
+}
+
 export interface SelectionScore {
   file_id: string;
   score: number;
