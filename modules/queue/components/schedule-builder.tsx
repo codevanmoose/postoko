@@ -321,7 +321,7 @@ export function ScheduleBuilder({ onSave, onCancel }: ScheduleBuilderProps) {
                 className="rounded border-gray-300"
               />
               <span className="text-sm">
-                {account.platform} - @{account.username}
+                {account.platform?.display_name || 'Unknown'} - @{account.username}
               </span>
             </label>
           ))}
