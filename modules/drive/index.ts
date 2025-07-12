@@ -3,6 +3,11 @@
 // Context and Provider
 export { DriveProvider, useDrive } from './context/drive-context';
 
+// Hooks
+export { useDriveAccounts } from './hooks/use-drive-accounts';
+export { useMonitoredFolders } from './hooks/use-monitored-folders';
+export { useDriveFiles } from './hooks/use-drive-files';
+
 // Components
 export { DriveConnectButton } from './components/drive-connect-button';
 

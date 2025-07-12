@@ -12,3 +12,4 @@ export { usePlatformLimits } from './hooks/use-platform-limits';
 // Libraries
 export { OAuthManager } from './lib/oauth-manager';
 export { PlatformFactory } from './lib/platform-factory';
+export { SocialPoster } from './lib/social-poster';

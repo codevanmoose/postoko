@@ -105,10 +105,10 @@ export class OpenAIClient {
     });
 
     return {
-      images: response.data.map(image => ({
+      images: response.data?.map(image => ({
         url: image.url!,
         revised_prompt: image.revised_prompt,
-      })),
+      })) || [],
       model: 'dall-e-3',
     };
   }
