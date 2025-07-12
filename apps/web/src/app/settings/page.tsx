@@ -1,7 +1,7 @@
 'use client';
 
 import { useRequireAuth } from '@postoko/auth';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/layout/container';
 import Link from 'next/link';
 
 export default function SettingsPage() {

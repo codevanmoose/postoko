@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useRequireAuth } from '@postoko/auth';
 import { usePrivacy } from '@postoko/settings';
 import { privacyLib } from '@postoko/settings';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/layout/container';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';

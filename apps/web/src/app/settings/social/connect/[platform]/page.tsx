@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/layout/container';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useAuth } from '@postoko/auth';
 import { useSocial } from '@postoko/social';

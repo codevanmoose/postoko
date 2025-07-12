@@ -1,7 +1,7 @@
 'use client';
 
 import { QueueProvider, QueueList, ScheduleBuilder, QueueCalendar } from '@postoko/queue';
-import { Button } from '@postoko/ui/components/button';
+import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { Plus, Calendar, List, Settings } from 'lucide-react';
 

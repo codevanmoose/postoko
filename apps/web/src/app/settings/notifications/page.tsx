@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useRequireAuth } from '@postoko/auth';
 import { useNotifications } from '@postoko/settings';
 import { NotificationToggle } from '@postoko/settings/components/notification-toggle';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/layout/container';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Spinner } from '@/components/ui/spinner';

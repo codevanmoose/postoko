@@ -74,15 +74,22 @@ done
 
 # Fix app-level imports in src/app files
 echo "Fixing app-level imports..."
-find src/app -type f \( -name "*.ts" -o -name "*.tsx" \) -exec \
-  sed -i \
-      -e "s|from '@postoko/ui/components/|from '@/components/ui/|g" \
+find src/app -type f \( -name "*.ts" -o -name "*.tsx" \) | while read file; do
+  # Create a temporary file
+  temp_file="${file}.tmp"
+  
+  # Replace imports
+  sed -e "s|from '@postoko/ui/components/|from '@/components/ui/|g" \
       -e "s|from \"@postoko/ui/components/|from \"@/components/ui/|g" \
       -e "s|from '@/components/ui/container'|from '@/components/layout/container'|g" \
       -e "s|from \"@/components/ui/container\"|from \"@/components/layout/container\"|g" \
       -e "s|/loading-spinner'|/spinner'|g" \
       -e "s|{ LoadingSpinner }|{ Spinner as LoadingSpinner }|g" \
-      {} \;
+      "$file" > "$temp_file"
+  
+  # Move temp file back
+  mv "$temp_file" "$file"
+done
 
 # Debug: Check if files were modified
 echo "Checking AI page imports before fix..."

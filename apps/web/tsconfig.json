@@ -1,5 +1,4 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -28,12 +27,9 @@
       "@/styles/*": ["./src/styles/*"],
       "@/types/*": ["./src/types/*"],
       "@/utils/*": ["./src/utils/*"],
-      "@postoko/database": ["../../packages/database/src"],
-      "@postoko/types": ["../../packages/types/src"],
-      "@postoko/utils": ["../../packages/utils/src"],
-      "@postoko/auth": ["../../modules/auth"],
-      "@modules/*": ["../../modules/*"]
-    }
+      "@/components/layout/*": ["./src/components/layout/*"]
+    },
+    "baseUrl": "."
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

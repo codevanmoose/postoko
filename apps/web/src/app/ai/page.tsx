@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from '@postoko/ui/components/button';
-import { Input } from '@postoko/ui/components/input';
-import { Label } from '@postoko/ui/components/label';
-import { LoadingSpinner } from '@postoko/ui/components/loading-spinner';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Spinner as LoadingSpinner } from '@/components/ui/spinner';
 import { Sparkles, Image, Type, Zap } from 'lucide-react';
 
 export default function AIPage() {

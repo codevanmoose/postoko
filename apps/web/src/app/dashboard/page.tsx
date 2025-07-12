@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/layout/container';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useAuth, ProtectedRoute } from '@postoko/auth';
 import { Plus, CheckCircle, Calendar, Sparkles, Image, Settings, BarChart3, Clock, AlertTriangle } from 'lucide-react';
