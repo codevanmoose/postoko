@@ -1,13 +1,6 @@
 {
-  "version": 2,
-  "name": "postoko",
-  "projects": [
-    {
-      "source": "apps/web",
-      "framework": "nextjs"
-    }
-  ],
-  "github": {
-    "silent": true
-  }
+  "buildCommand": "cd apps/web && next build",
+  "outputDirectory": "apps/web/.next",
+  "framework": null,
+  "installCommand": "npm install --force"
 }
