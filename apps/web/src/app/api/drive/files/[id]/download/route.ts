@@ -58,14 +58,19 @@ export async function GET(
     
     // Download from Drive
     const driveClient = await DriveClient.forAccount(file.monitored_folders.drive_accounts);
-    const downloadData = await driveClient.downloadFile(file.file_id);
+    
+    // Get file metadata first
+    const fileMetadata = await driveClient.getFile(file.file_id);
+    
+    // Download file content
+    const fileContent = await driveClient.downloadFile(file.file_id);
     
     // For now, return the file directly
     // In production, you would upload to Supabase Storage and cache the URL
-    return new NextResponse(downloadData.data, {
+    return new NextResponse(fileContent, {
       headers: {
-        'Content-Type': downloadData.mimeType,
-        'Content-Length': downloadData.size.toString(),
+        'Content-Type': fileMetadata.mimeType || file.mime_type || 'application/octet-stream',
+        'Content-Length': fileMetadata.size || fileContent.length.toString(),
         'Cache-Control': 'private, max-age=3600',
         'X-Cache': forceRefresh ? 'REFRESH' : 'MISS',
       },
