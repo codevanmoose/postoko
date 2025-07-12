@@ -8,7 +8,7 @@ import { Container } from '@/components/layout/container';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useAuth } from '@postoko/auth';
-import { useDriveFiles } from '@postoko/drive';
+import { useDriveFiles, type DriveFile } from '@postoko/drive';
 import { 
   ChevronLeft, 
   Image as ImageIcon,
@@ -22,6 +22,7 @@ import {
 
 const statusConfig = {
   available: { label: 'Available', color: 'default', icon: CheckCircle },
+  unavailable: { label: 'Unavailable', color: 'secondary', icon: XCircle },
   scheduled: { label: 'Scheduled', color: 'blue', icon: Clock },
   posted: { label: 'Posted', color: 'purple', icon: CheckCircle },
   skipped: { label: 'Skipped', color: 'secondary', icon: XCircle },
@@ -35,7 +36,7 @@ export default function FolderFilesPage() {
   const folderId = params.folderId as string;
   const { user } = useAuth();
   
-  const [statusFilter, setStatusFilter] = useState<string>('all');
+  const [statusFilter, setStatusFilter] = useState<'all' | 'available' | 'scheduled' | 'posted'>('all');
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
   
   const { 
@@ -45,7 +46,7 @@ export default function FolderFilesPage() {
     refresh: refreshFiles 
   } = useDriveFiles({
     folderId,
-    status: statusFilter === 'all' ? undefined : statusFilter,
+    status: statusFilter === 'all' ? undefined : statusFilter as 'available' | 'scheduled' | 'posted',
   });
 
   const handleDownload = async (fileId: string) => {
@@ -85,7 +86,7 @@ export default function FolderFilesPage() {
         </div>
 
         <div className="flex items-center justify-between">
-          <Select value={statusFilter} onValueChange={setStatusFilter}>
+          <Select value={statusFilter} onValueChange={(value) => setStatusFilter(value as 'all' | 'available' | 'scheduled' | 'posted')}>
             <SelectTrigger className="w-48">
               <SelectValue placeholder="Filter by status" />
             </SelectTrigger>
@@ -132,17 +133,18 @@ export default function FolderFilesPage() {
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {files.map((file) => {
-              const status = statusConfig[file.status as keyof typeof statusConfig];
+              const fileStatus = file.is_available ? 'available' : 'unavailable';
+              const status = statusConfig[fileStatus as keyof typeof statusConfig] || statusConfig.available;
               const StatusIcon = status.icon;
               
               return (
                 <Card key={file.id} className="group hover:shadow-lg transition-shadow">
                   <CardContent className="p-4">
                     <div className="relative aspect-square mb-3">
-                      {file.thumbnail_link ? (
+                      {file.thumbnail_url ? (
                         <img
-                          src={file.thumbnail_link}
-                          alt={file.name}
+                          src={file.thumbnail_url}
+                          alt={file.file_name}
                           className="w-full h-full object-cover rounded-lg"
                         />
                       ) : (
@@ -169,8 +171,8 @@ export default function FolderFilesPage() {
                       </div>
                     </div>
                     
-                    <h3 className="font-medium text-sm truncate mb-2" title={file.name}>
-                      {file.name}
+                    <h3 className="font-medium text-sm truncate mb-2" title={file.file_name}>
+                      {file.file_name}
                     </h3>
                     
                     <div className="flex items-center justify-between">
@@ -187,7 +189,7 @@ export default function FolderFilesPage() {
                     </div>
                     
                     <p className="text-xs text-muted-foreground mt-2">
-                      {(file.size / 1024 / 1024).toFixed(1)} MB
+                      {(file.file_size / 1024 / 1024).toFixed(1)} MB
                     </p>
                   </CardContent>
                 </Card>

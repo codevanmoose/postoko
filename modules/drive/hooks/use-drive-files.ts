@@ -2,26 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@postoko/database';
-
-// TODO: Update when database types are regenerated
-type DriveFile = {
-  id: string;
-  folder_id: string;
-  drive_file_id: string;
-  name: string;
-  mime_type: string;
-  size: number;
-  md5_checksum: string;
-  created_time: string;
-  modified_time: string;
-  thumbnail_url: string | null;
-  download_url: string | null;
-  status: 'available' | 'scheduled' | 'posted';
-  post_count: number;
-  last_posted_at: string | null;
-  created_at: string;
-  updated_at: string;
-};
+import type { DriveFile } from '../types';
 
 interface UseDriveFilesOptions {
   folderId?: string;
@@ -50,11 +31,16 @@ export function useDriveFiles(options: UseDriveFilesOptions = {}) {
         .select('*');
 
       if (options.folderId) {
-        query = query.eq('folder_id', options.folderId);
+        query = query.eq('monitored_folder_id', options.folderId);
       }
 
       if (options.status) {
-        query = query.eq('status', options.status);
+        if (options.status === 'available') {
+          query = query.eq('is_available', true).eq('is_blacklisted', false);
+        } else if (options.status === 'scheduled' || options.status === 'posted') {
+          // TODO: Implement status tracking for scheduled/posted files
+          query = query.eq('is_available', true);
+        }
       }
 
       if (options.limit) {
