@@ -7,7 +7,7 @@ cp package.vercel.json package.json
 npm install --legacy-peer-deps
 
 # Install missing dependencies that modules need
-npm install --legacy-peer-deps stripe@^13.0.0 @types/js-cookie@^3.0.6 googleapis@^128.0.0
+npm install --legacy-peer-deps stripe@^13.0.0 @types/js-cookie@^3.0.6 googleapis@^128.0.0 crypto-js@^4.2.0 @types/crypto-js@^4.2.1
 
 # Copy shared packages into the app
 mkdir -p node_modules/@postoko
@@ -53,6 +53,7 @@ for module in auth settings billing drive social queue ai; do
     temp_file="${file}.tmp"
     
     # Replace imports - handle both @/ and @postoko/ui patterns
+    # Also fix loading-spinner -> spinner
     sed -e "s|from '@/components/ui/|from '${prefix}src/components/ui/|g" \
         -e "s|from \"@/components/ui/|from \"${prefix}src/components/ui/|g" \
         -e "s|from '@/lib/|from '${prefix}src/lib/|g" \
@@ -61,11 +62,27 @@ for module in auth settings billing drive social queue ai; do
         -e "s|from \"@/hooks/|from \"${prefix}src/hooks/|g" \
         -e "s|from '@postoko/ui/components/|from '${prefix}src/components/ui/|g" \
         -e "s|from \"@postoko/ui/components/|from \"${prefix}src/components/ui/|g" \
+        -e "s|/loading-spinner'|/spinner'|g" \
+        -e "s|{ LoadingSpinner }|{ Spinner }|g" \
+        -e "s|<LoadingSpinner|<Spinner|g" \
         "$file" > "$temp_file"
     
     # Move temp file back
     mv "$temp_file" "$file"
   done
+done
+
+# Fix app-level imports in src/app files
+find src/app -type f \( -name "*.ts" -o -name "*.tsx" \) | while read file; do
+  temp_file="${file}.tmp"
+  
+  # Replace @postoko/ui/components imports with relative paths
+  sed -e "s|from '@postoko/ui/components/|from '@/components/ui/|g" \
+      -e "s|from \"@postoko/ui/components/|from \"@/components/ui/|g" \
+      "$file" > "$temp_file"
+  
+  # Move temp file back
+  mv "$temp_file" "$file"
 done
 
 # Build with the custom tsconfig
