@@ -179,7 +179,7 @@ export const subscriptionManager = {
     // Update local record
     await this.updateSubscription(userId, {
       cancel_at_period_end: false,
-      canceled_at: null,
+      canceled_at: undefined,
     });
   },
 
