@@ -39,26 +39,28 @@ for module in auth settings billing drive social queue ai; do
   
   # Fix imports in TypeScript/TSX files
   find node_modules/@postoko/$module -type f \( -name "*.ts" -o -name "*.tsx" \) | while read file; do
-    # Create a temporary file
-    temp_file="${file}.tmp"
+    # Calculate the relative path dynamically based on file depth
+    rel_path=$(echo "$file" | sed 's|node_modules/@postoko/[^/]*/||')
+    depth=$(echo "$rel_path" | tr '/' '\n' | grep -v '^$' | wc -l)
     
-    # Count the depth from node_modules/@postoko/[module]/... to get correct relative path
-    depth=$(echo "$file" | sed 's|node_modules/@postoko/||' | tr '/' '\n' | wc -l)
-    depth=$((depth - 1))
-    
-    # Build the relative path prefix
+    # Build the correct number of ../
     prefix=""
-    for i in $(seq 1 $depth); do
+    for i in $(seq 1 $((depth + 3))); do
       prefix="../$prefix"
     done
     
-    # Replace imports
+    # Create a temporary file
+    temp_file="${file}.tmp"
+    
+    # Replace imports - handle both @/ and @postoko/ui patterns
     sed -e "s|from '@/components/ui/|from '${prefix}src/components/ui/|g" \
         -e "s|from \"@/components/ui/|from \"${prefix}src/components/ui/|g" \
         -e "s|from '@/lib/|from '${prefix}src/lib/|g" \
         -e "s|from \"@/lib/|from \"${prefix}src/lib/|g" \
         -e "s|from '@/hooks/|from '${prefix}src/hooks/|g" \
         -e "s|from \"@/hooks/|from \"${prefix}src/hooks/|g" \
+        -e "s|from '@postoko/ui/components/|from '${prefix}src/components/ui/|g" \
+        -e "s|from \"@postoko/ui/components/|from \"${prefix}src/components/ui/|g" \
         "$file" > "$temp_file"
     
     # Move temp file back
