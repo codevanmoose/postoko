@@ -558,6 +558,20 @@
    - Cost tracking setup
    - Customer support workflows
 
+## Deployment Notes for Next Session
+1. **Vercel Build Status**: Custom build script (`apps/web/vercel-build.sh`) handles monorepo
+2. **Environment Variables**: Still need to be configured in Vercel dashboard
+3. **Next Steps**:
+   - Monitor current build for success
+   - Configure Supabase production instance
+   - Add environment variables to Vercel
+   - Set up custom domain
+   - Configure external APIs (Stripe, OpenAI, Google, Social platforms)
+4. **Known Issues Resolved**:
+   - npm workspace protocol incompatibility
+   - Module path resolution in monorepo
+   - Component location differences (ui vs layout folders)
+
 ## Lessons Learned
 - Using modular architecture from start prevents complexity later
 - Clear module dependencies help with planning
@@ -657,6 +671,23 @@ REDIS_URL=
 - ✅ Template system for consistent branding
 
 **🦄 POSTOKO IS LIVE AND READY TO SCALE TO UNICORN STATUS! 🦄**
+
+## Session 8 (2025-01-12) - Vercel Deployment Troubleshooting
+- **Issue**: npm workspace protocol (`workspace:*`) not supported by Vercel
+- **Solution Implemented**:
+  - Created custom `vercel-build.sh` script to handle monorepo structure
+  - Script copies all workspace packages into `node_modules/@postoko/`
+  - Dynamically fixes import paths from `@/components` to relative paths
+  - Handles both `@postoko/ui/components` and `@/components/ui` import styles
+  - Fixes `loading-spinner` → `spinner` component references
+  - Fixes `container` component path from `ui/` to `layout/`
+  - Creates standalone tsconfig.json for Vercel build
+- **Dependencies Added**:
+  - `stripe@^13.0.0` - Payment processing
+  - `googleapis@^128.0.0` - Google Drive API
+  - `crypto-js@^4.2.0` - OAuth state encryption
+- **Build Status**: In progress, resolving final import issues
+- **Vercel Project**: https://vercel.com/vanmooseprojects/postoko
 
 ## Key Files to Review
 - `/modules/auth/context/auth-context.tsx` - Main auth logic
