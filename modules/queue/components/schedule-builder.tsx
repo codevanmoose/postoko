@@ -17,7 +17,7 @@ interface ScheduleBuilderProps {
 
 export function ScheduleBuilder({ onSave, onCancel }: ScheduleBuilderProps) {
   const { createSchedule } = useQueue();
-  const { socialAccounts } = useSocial();
+  const { accounts: socialAccounts } = useSocial();
   const { folders } = useDrive();
   
   const [name, setName] = useState('');
