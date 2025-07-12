@@ -45,7 +45,7 @@ export const invoiceManager = {
    * Get invoices for a user
    */
   async getInvoices(userId: string): Promise<Invoice[]> {
-    const supabase = createServerClient();
+    const supabase = createClient();
     
     const { data, error } = await supabase
       .from('invoices')
@@ -61,7 +61,7 @@ export const invoiceManager = {
    * Get a specific invoice
    */
   async getInvoice(userId: string, invoiceId: string): Promise<Invoice | null> {
-    const supabase = createServerClient();
+    const supabase = createClient();
     
     const { data, error } = await supabase
       .from('invoices')
@@ -84,7 +84,7 @@ export const invoiceManager = {
    * Update invoice status
    */
   async updateInvoiceStatus(stripeInvoiceId: string, status: string): Promise<void> {
-    const supabase = createServerClient();
+    const supabase = createClient();
     
     await supabase
       .from('invoices')
