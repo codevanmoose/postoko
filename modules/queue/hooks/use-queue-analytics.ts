@@ -59,8 +59,8 @@ export function useQueueAnalytics(options: UseQueueAnalyticsOptions = {}) {
   }, {} as Record<number, OptimalTime>);
 
   // Get top performing platforms
-  const topPlatforms = analytics?.platform_breakdown
-    ? Object.entries(analytics.platform_breakdown)
+  const topPlatforms = analytics?.platform_metrics
+    ? Object.entries(analytics.platform_metrics)
         .map(([platform, metrics]) => ({
           platform,
           ...metrics as PlatformMetrics,
