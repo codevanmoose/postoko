@@ -32,7 +32,7 @@ export async function GET(request: NextRequest) {
       ...queueStatus,
       processor: processorStatus,
       total_items: totalItems,
-      processing_rate,
+      processing_rate: processingRate,
       health_check: {
         is_healthy: queueStatus.is_healthy,
         issues: queueStatus.errors || [],

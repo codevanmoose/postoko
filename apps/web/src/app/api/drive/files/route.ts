@@ -38,8 +38,10 @@ export async function GET(request: NextRequest) {
       query = query.eq('monitored_folder_id', folderId);
     }
     
-    if (status) {
-      query = query.eq('status', status);
+    if (status === 'available') {
+      query = query.eq('is_available', true).eq('is_blacklisted', false);
+    } else if (status === 'unavailable') {
+      query = query.eq('is_available', false);
     }
     
     if (mimeType) {
@@ -59,16 +61,16 @@ export async function GET(request: NextRequest) {
     const files = data?.map(file => ({
       id: file.id,
       file_id: file.file_id,
-      name: file.name,
+      name: file.file_name,
       mime_type: file.mime_type,
-      size: file.size,
-      thumbnail_link: file.thumbnail_link,
-      web_view_link: file.web_view_link,
+      size: file.file_size,
+      thumbnail_url: file.thumbnail_url,
+      web_view_link: file.download_url,
       created_time: file.created_time,
       modified_time: file.modified_time,
-      status: file.status,
-      posted_count: file.posted_count,
-      last_posted_at: file.last_posted_at,
+      status: file.is_available ? 'available' : 'unavailable',
+      use_count: file.use_count,
+      last_used_at: file.last_used_at,
       metadata: file.metadata,
       folder: {
         id: file.monitored_folders.id,
@@ -93,7 +95,7 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// Update file status
+// Update file usage
 export async function PATCH(request: NextRequest) {
   try {
     const authResult = await requireAuth(request);
@@ -101,19 +103,19 @@ export async function PATCH(request: NextRequest) {
     
     const { user } = authResult;
     const body = await request.json();
-    const { file_id, status } = body;
+    const { file_id, action } = body;
     
-    if (!file_id || !status) {
+    if (!file_id || !action) {
       return NextResponse.json(
-        { error: 'Missing file_id or status' },
+        { error: 'Missing file_id or action' },
         { status: 400 }
       );
     }
     
-    const validStatuses = ['available', 'scheduled', 'posted', 'skipped', 'error'];
-    if (!validStatuses.includes(status)) {
+    const validActions = ['mark_used', 'blacklist', 'unblacklist'];
+    if (!validActions.includes(action)) {
       return NextResponse.json(
-        { error: 'Invalid status' },
+        { error: 'Invalid action' },
         { status: 400 }
       );
     }
@@ -141,12 +143,16 @@ export async function PATCH(request: NextRequest) {
       );
     }
     
-    // Update status
-    const updateData: any = { status };
+    // Update based on action
+    const updateData: any = {};
     
-    if (status === 'posted') {
+    if (action === 'mark_used') {
       updateData.use_count = file.use_count + 1;
       updateData.last_used_at = new Date().toISOString();
+    } else if (action === 'blacklist') {
+      updateData.is_blacklisted = true;
+    } else if (action === 'unblacklist') {
+      updateData.is_blacklisted = false;
     }
     
     const { data, error } = await supabase
