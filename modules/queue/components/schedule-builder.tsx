@@ -295,7 +295,7 @@ export function ScheduleBuilder({ onSave, onCancel }: ScheduleBuilderProps) {
                   }}
                   className="rounded border-gray-300"
                 />
-                <span className="text-sm">{folder.name}</span>
+                <span className="text-sm">{folder.folder_name}</span>
               </label>
             ))}
           </div>
