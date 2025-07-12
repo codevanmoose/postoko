@@ -262,10 +262,10 @@ export class AnalyticsEngine {
 
     // Find most active times
     const mostActiveHour = Object.entries(byHour)
-      .sort(([, a], [, b]) => b - a)[0]?.[0] || 12;
+      .sort(([, a], [, b]) => b - a)[0]?.[0] || '12';
 
     const mostActiveDay = Object.entries(byDayOfWeek)
-      .sort(([, a], [, b]) => b - a)[0]?.[0] || 0;
+      .sort(([, a], [, b]) => b - a)[0]?.[0] || '0';
 
     return {
       by_hour: byHour,
