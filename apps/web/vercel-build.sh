@@ -76,13 +76,20 @@ done
 find src/app -type f \( -name "*.ts" -o -name "*.tsx" \) | while read file; do
   temp_file="${file}.tmp"
   
-  # Replace @postoko/ui/components imports with relative paths
+  # Replace @postoko/ui/components imports with relative paths and fix loading-spinner
   sed -e "s|from '@postoko/ui/components/|from '@/components/ui/|g" \
       -e "s|from \"@postoko/ui/components/|from \"@/components/ui/|g" \
+      -e "s|/loading-spinner'|/spinner'|g" \
+      -e "s|{ LoadingSpinner }|{ Spinner }|g" \
+      -e "s|<LoadingSpinner|<Spinner|g" \
       "$file" > "$temp_file"
   
-  # Move temp file back
-  mv "$temp_file" "$file"
+  # Only replace if file changed
+  if ! cmp -s "$file" "$temp_file"; then
+    mv "$temp_file" "$file"
+  else
+    rm "$temp_file"
+  fi
 done
 
 # Build with the custom tsconfig
