@@ -40,10 +40,9 @@ export default function FolderFilesPage() {
   
   const { 
     files, 
-    isLoading, 
-    pagination,
-    refreshFiles,
-    downloadFile 
+    loading: isLoading, 
+    error,
+    refresh: refreshFiles 
   } = useDriveFiles({
     folderId,
     status: statusFilter === 'all' ? undefined : statusFilter,
@@ -51,8 +50,12 @@ export default function FolderFilesPage() {
 
   const handleDownload = async (fileId: string) => {
     try {
-      const url = await downloadFile(fileId);
-      window.open(url, '_blank');
+      // TODO: Implement file download
+      const response = await fetch(`/api/drive/files/${fileId}/download`);
+      const data = await response.json();
+      if (data.url) {
+        window.open(data.url, '_blank');
+      }
     } catch (error) {
       console.error('Download error:', error);
     }
@@ -97,7 +100,7 @@ export default function FolderFilesPage() {
           </Select>
 
           <div className="text-sm text-muted-foreground">
-            {pagination.total} files total
+            {files.length} files total
           </div>
         </div>
 
@@ -193,30 +196,7 @@ export default function FolderFilesPage() {
           </div>
         )}
 
-        {pagination.total > pagination.limit && (
-          <div className="flex items-center justify-center gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => refreshFiles(pagination.offset - pagination.limit)}
-              disabled={pagination.offset === 0}
-            >
-              Previous
-            </Button>
-            <span className="text-sm text-muted-foreground">
-              Page {Math.floor(pagination.offset / pagination.limit) + 1} of{' '}
-              {Math.ceil(pagination.total / pagination.limit)}
-            </span>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => refreshFiles(pagination.offset + pagination.limit)}
-              disabled={pagination.offset + pagination.limit >= pagination.total}
-            >
-              Next
-            </Button>
-          </div>
-        )}
+        {/* TODO: Add pagination support */}
       </div>
 
       {/* File Preview Modal */}

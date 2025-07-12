@@ -28,8 +28,9 @@ export default function ProfilePage() {
   useEffect(() => {
     if (user) {
       setFullName(user.full_name || '');
-      setCompany(user.company || '');
-      setBio(user.bio || '');
+      // TODO: Add company and bio fields to user profile
+      setCompany('');
+      setBio('');
     }
   }, [user]);
 
@@ -42,8 +43,7 @@ export default function ProfilePage() {
     try {
       await updateProfile({
         full_name: fullName,
-        company,
-        bio,
+        // TODO: Add company and bio to user profile
       });
       setSuccess('Profile updated successfully');
       setIsEditing(false);
@@ -60,8 +60,9 @@ export default function ProfilePage() {
     // Reset form to current user data
     if (user) {
       setFullName(user.full_name || '');
-      setCompany(user.company || '');
-      setBio(user.bio || '');
+      // TODO: Add company and bio fields to user profile
+      setCompany('');
+      setBio('');
     }
   };
 
@@ -120,6 +121,7 @@ export default function ProfilePage() {
                 />
               </div>
 
+              {/* TODO: Add company and bio fields to user profile
               <div className="space-y-2">
                 <Label htmlFor="company">Company</Label>
                 <Input
@@ -144,6 +146,7 @@ export default function ProfilePage() {
                   rows={4}
                 />
               </div>
+              */}
 
               {error && (
                 <div className="text-sm text-red-600 bg-red-50 p-3 rounded">

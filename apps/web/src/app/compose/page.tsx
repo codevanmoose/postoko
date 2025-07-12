@@ -141,8 +141,9 @@ export default function ComposePage() {
         });
         
         if (!validation.valid && account.platform) {
+          const platformName = account.platform.name;
           validation.errors.forEach(error => {
-            newErrors[`${account.platform.name}_${error}`] = error;
+            newErrors[`${platformName}_${error}`] = error;
           });
         }
       }
