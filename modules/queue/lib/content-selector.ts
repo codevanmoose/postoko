@@ -1,5 +1,5 @@
 import { createClient } from '@postoko/database';
-import { DriveManager } from '@postoko/drive';
+import { DriveManager } from '@postoko/drive/server';
 import { 
   ContentSelectionResult,
   SourceConfig,

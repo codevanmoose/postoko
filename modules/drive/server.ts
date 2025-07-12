@@ -6,3 +6,4 @@ export { DriveClient } from './lib/drive-client';
 export { FolderScanner } from './lib/folder-scanner';
 export { SelectionEngine } from './lib/selection-engine';
 export { CacheManager } from './lib/cache-manager';
+export { DriveManager } from './lib/drive-manager';

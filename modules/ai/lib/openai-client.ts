@@ -177,8 +177,8 @@ export class OpenAIClient {
 
     return {
       flagged: result.flagged,
-      categories: result.categories,
-      category_scores: result.category_scores,
+      categories: result.categories as Record<string, boolean>,
+      category_scores: result.category_scores as Record<string, number>,
       safety_rating,
     };
   }
