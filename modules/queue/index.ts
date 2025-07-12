@@ -3,13 +3,6 @@
 // Types
 export * from './types';
 
-// Core libraries
-export { QueueManager } from './lib/queue-manager';
-export { Scheduler } from './lib/scheduler';
-export { ContentSelector } from './lib/content-selector';
-export { QueueProcessor } from './lib/queue-processor';
-export { AnalyticsEngine } from './lib/analytics-engine';
-
 // Context and hooks
 export { QueueProvider, useQueue } from './context/queue-context';
 export { useQueueItems, useUpcomingPosts, useFailedPosts, useTodaysPosts } from './hooks/use-queue-items';

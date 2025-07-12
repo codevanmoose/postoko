@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@postoko/auth';
-import { AnalyticsEngine } from '@postoko/queue';
+import { AnalyticsEngine } from '@postoko/queue/server';
 
 export async function GET(request: NextRequest) {
   try {

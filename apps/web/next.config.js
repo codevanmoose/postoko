@@ -4,7 +4,7 @@ const nextConfig = {
   swcMinify: true,
   transpilePackages: [
     '@postoko/auth',
-    '@postoko/billing',
+    '@postoko/billing', 
     '@postoko/database',
     '@postoko/drive',
     '@postoko/settings',

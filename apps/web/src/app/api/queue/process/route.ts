@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@postoko/auth';
-import { QueueProcessor } from '@postoko/queue';
+import { QueueProcessor } from '@postoko/queue/server';
 
 export async function POST(request: NextRequest) {
   try {
