@@ -78,6 +78,8 @@ find src/app -type f \( -name "*.ts" -o -name "*.tsx" \) -exec \
   sed -i \
       -e "s|from '@postoko/ui/components/|from '@/components/ui/|g" \
       -e "s|from \"@postoko/ui/components/|from \"@/components/ui/|g" \
+      -e "s|from '@/components/ui/container'|from '@/components/layout/container'|g" \
+      -e "s|from \"@/components/ui/container\"|from \"@/components/layout/container\"|g" \
       -e "s|/loading-spinner'|/spinner'|g" \
       -e "s|{ LoadingSpinner }|{ Spinner as LoadingSpinner }|g" \
       {} \;
@@ -125,7 +127,8 @@ cat > tsconfig.json << 'EOF'
       "@/hooks/*": ["./src/hooks/*"],
       "@/styles/*": ["./src/styles/*"],
       "@/types/*": ["./src/types/*"],
-      "@/utils/*": ["./src/utils/*"]
+      "@/utils/*": ["./src/utils/*"],
+      "@/components/layout/*": ["./src/components/layout/*"]
     },
     "baseUrl": "."
   },
