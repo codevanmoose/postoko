@@ -73,7 +73,7 @@ export function QueueItemCard({ item }: QueueItemCardProps) {
   const platforms = item.social_account_ids
     .map(id => socialAccounts.find(acc => acc.id === id))
     .filter(Boolean)
-    .map(acc => acc!.platform);
+    .map(acc => acc!.platform?.display_name || 'Unknown');
 
   const handleSaveEdit = async () => {
     try {
