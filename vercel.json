@@ -1,6 +1,6 @@
 {
-  "buildCommand": "cd apps/web && npm run build",
-  "installCommand": "npm install -g npm@9.8.1 && npm install --workspaces=false --force",
-  "framework": null,
-  "outputDirectory": "apps/web/.next"
+  "buildCommand": "cd apps/web && bash vercel-build.sh",
+  "outputDirectory": "apps/web/.next",
+  "installCommand": "echo 'Skipping install'",
+  "framework": null
 }

@@ -585,6 +585,7 @@
 ## Important Links
 - [Supabase Dashboard](https://app.supabase.com)
 - [Vercel Dashboard](https://vercel.com/dashboard)
+- [Vercel Project - Postoko](https://vercel.com/vanmooseprojects/postoko)
 - [DigitalOcean Dashboard](https://cloud.digitalocean.com)
 - [Stripe Dashboard](https://dashboard.stripe.com)
 

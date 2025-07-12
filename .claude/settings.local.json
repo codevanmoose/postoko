@@ -2,10 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(cd:*)",
-      "Bash(cd:*)",
       "Bash(mkdir:*)",
       "Bash(git init:*)",
-      "Bash(cd:*)",
       "Bash(git commit -m \"Initial commit: Postoko foundation with monorepo structure\n\n- Set up Turborepo monorepo with apps/, packages/, and modules/\n- Created comprehensive database schema with Supabase\n- Initialized Next.js 14 app with Tailwind CSS\n- Set up shared packages (database, types, utils)\n- Created auth module specification\n- Configured ESLint, Prettier, and TypeScript\n- Added Playwright for E2E testing\n- Complete project documentation\")",
       "Bash(git add:*)",
       "Bash(git commit:*)",
@@ -19,7 +17,10 @@
       "Bash(gh repo create:*)",
       "Bash(git remote add:*)",
       "Bash(vercel:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(chmod:*)"
     ],
     "deny": []
   }
