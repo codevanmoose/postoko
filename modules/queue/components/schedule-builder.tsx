@@ -281,7 +281,7 @@ export function ScheduleBuilder({ onSave, onCancel }: ScheduleBuilderProps) {
         <div>
           <Label>Select Folders</Label>
           <div className="mt-2 space-y-2 max-h-48 overflow-y-auto border border-gray-200 rounded-lg p-3">
-            {folders.filter(f => f.is_monitored).map(folder => (
+            {folders.filter(f => f.is_active).map(folder => (
               <label key={folder.id} className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
