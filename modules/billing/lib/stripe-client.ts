@@ -8,7 +8,9 @@ export function getStripeServer() {
   if (!stripeServer) {
     const secretKey = process.env.STRIPE_SECRET_KEY;
     if (!secretKey) {
-      throw new Error('STRIPE_SECRET_KEY is not set');
+      console.warn('STRIPE_SECRET_KEY is not set - Stripe features will be disabled');
+      // Return null to indicate Stripe is not available
+      return null as any;
     }
     
     stripeServer = new Stripe(secretKey, {

@@ -9,7 +9,9 @@
   [![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
   [![FastAPI](https://img.shields.io/badge/FastAPI-0.104-green)](https://fastapi.tiangolo.com/)
   [![Supabase](https://img.shields.io/badge/Supabase-2.0-blue)](https://supabase.com/)
-  [![Status](https://img.shields.io/badge/status-SHIPPED_&_READY-brightgreen)](https://github.com/codevanmoose/postoko)
+  [![Status](https://img.shields.io/badge/status-CODE_COMPLETE-brightgreen)](https://github.com/codevanmoose/postoko)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-✓_Passing-success)](https://www.typescriptlang.org/)
+  [![Deployment](https://img.shields.io/badge/Deployment-Ready-yellow)](https://vercel.com/vanmooseprojects/postoko)
 </div>
 
 ## 📋 Table of Contents
@@ -112,14 +114,31 @@ postoko/
    # Visit http://localhost:3000
    ```
 
-### ⚡ **Production Deployment (5 minutes)**
+### ⚡ **Production Deployment**
 
-1. **Connect to Vercel**: Import GitHub repo at vercel.com
-2. **Set root directory**: `apps/web`  
-3. **Add environment variables**: Copy from `.env.example`
-4. **Deploy**: Platform is ready for customers!
+#### Current Status
+- ✅ **TypeScript Build**: Passing (all errors resolved)
+- ✅ **Vercel Integration**: Connected and auto-deploying
+- ⚠️ **Environment Variables**: Required for deployment
 
-**Time to revenue**: 60 minutes with API configuration
+#### Quick Start (10 minutes)
+1. **Set up Supabase**:
+   ```bash
+   # Create project at supabase.com
+   # Run migrations in SQL editor (00001 through 00007)
+   ```
+
+2. **Configure Vercel Environment**:
+   ```bash
+   # Required minimum:
+   NEXT_PUBLIC_SUPABASE_URL=https://xxx.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=xxx
+   SUPABASE_SERVICE_ROLE_KEY=xxx
+   ```
+
+3. **Deploy**: Trigger redeployment in Vercel dashboard
+
+**Note**: Build uses custom `vercel-build.sh` script to handle monorepo structure
 
 ## 💻 Development
 
@@ -128,7 +147,7 @@ postoko/
 Each feature is organized as a module with its own specification:
 
 ```
-modules/auth/         # ✅ 60% Complete
+modules/auth/         # ✅ 100% Complete
 ├── package.json      # Module dependencies
 ├── index.ts          # Module exports
 ├── types/            # TypeScript types

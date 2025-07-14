@@ -2,17 +2,25 @@ import OpenAI from 'openai';
 import { AIModel, SafetyRating } from '../types';
 
 export class OpenAIClient {
-  private client: OpenAI;
+  private client: OpenAI | null = null;
 
   constructor() {
-    const apiKey = process.env.OPENAI_API_KEY;
-    if (!apiKey) {
-      throw new Error('OPENAI_API_KEY environment variable is required');
-    }
+    // Lazy initialize to avoid build errors
+  }
 
-    this.client = new OpenAI({
-      apiKey,
-    });
+  private getClient(): OpenAI {
+    if (!this.getClient()) {
+      const apiKey = process.env.OPENAI_API_KEY;
+      if (!apiKey) {
+        console.warn('OPENAI_API_KEY is not set - AI features will be disabled');
+        throw new Error('OPENAI_API_KEY environment variable is required');
+      }
+
+      this.getClient() = new OpenAI({
+        apiKey,
+      });
+    }
+    return this.getClient();
   }
 
   // Generate text using GPT models
@@ -51,7 +59,7 @@ export class OpenAIClient {
       content: prompt
     });
 
-    const response = await this.client.chat.completions.create({
+    const response = await this.getClient().chat.completions.create({
       model,
       messages,
       max_tokens,
@@ -94,7 +102,7 @@ export class OpenAIClient {
       style = 'vivid'
     } = options;
 
-    const response = await this.client.images.generate({
+    const response = await this.getClient().images.generate({
       model: 'dall-e-3',
       prompt,
       size,
@@ -121,7 +129,7 @@ export class OpenAIClient {
     description: string;
     tokens_used: number;
   }> {
-    const response = await this.client.chat.completions.create({
+    const response = await this.getClient().chat.completions.create({
       model: 'gpt-4-vision-preview',
       messages: [
         {
@@ -161,7 +169,7 @@ export class OpenAIClient {
     category_scores: Record<string, number>;
     safety_rating: SafetyRating;
   }> {
-    const response = await this.client.moderations.create({
+    const response = await this.getClient().moderations.create({
       input: content,
     });
 

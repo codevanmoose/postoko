@@ -9,7 +9,8 @@ import type {
 } from '../types';
 
 const supabase = createClient();
-const stripe = getStripeServer();
+// Lazy load stripe to avoid errors during build
+let stripe: any;
 
 export const subscriptionManager = {
   /**
@@ -48,6 +49,7 @@ export const subscriptionManager = {
     }
 
     // Create new Stripe customer
+    if (!stripe) stripe = getStripeServer();
     const customer = await stripe.customers.create({
       email,
       metadata: {
@@ -107,6 +109,7 @@ export const subscriptionManager = {
       }];
     }
 
+    if (!stripe) stripe = getStripeServer();
     const session = await stripe.checkout.sessions.create(sessionOptions);
     return session.url!;
   },
@@ -115,6 +118,7 @@ export const subscriptionManager = {
    * Create customer portal session
    */
   async createPortalSession(options: CustomerPortalOptions): Promise<string> {
+    if (!stripe) stripe = getStripeServer();
     const session = await stripe.billingPortal.sessions.create({
       customer: options.customer_id,
       return_url: options.return_url,
@@ -151,6 +155,7 @@ export const subscriptionManager = {
     }
 
     // Cancel at period end in Stripe
+    if (!stripe) stripe = getStripeServer();
     await stripe.subscriptions.update(subscription.stripe_subscription_id, {
       cancel_at_period_end: true,
     });
@@ -172,6 +177,7 @@ export const subscriptionManager = {
     }
 
     // Resume in Stripe
+    if (!stripe) stripe = getStripeServer();
     await stripe.subscriptions.update(subscription.stripe_subscription_id, {
       cancel_at_period_end: false,
     });
@@ -187,6 +193,7 @@ export const subscriptionManager = {
    * Sync subscription from Stripe
    */
   async syncSubscriptionFromStripe(stripeSubscriptionId: string): Promise<void> {
+    if (!stripe) stripe = getStripeServer();
     const stripeSubscription = await stripe.subscriptions.retrieve(stripeSubscriptionId);
     
     // Determine tier from price ID
