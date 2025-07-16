@@ -7,7 +7,8 @@
   "license": "UNLICENSED",
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "packages/*",
+    "modules/*"
   ],
   "scripts": {
     "dev": "turbo run dev",

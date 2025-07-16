@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build --workspace=@postoko/web",
+  "buildCommand": "turbo run build --filter=@postoko/web",
   "outputDirectory": "apps/web/.next",
   "installCommand": "npm install",
   "framework": "nextjs"
