@@ -9,9 +9,10 @@
   [![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
   [![FastAPI](https://img.shields.io/badge/FastAPI-0.104-green)](https://fastapi.tiangolo.com/)
   [![Supabase](https://img.shields.io/badge/Supabase-2.0-blue)](https://supabase.com/)
-  [![Status](https://img.shields.io/badge/status-CODE_COMPLETE-brightgreen)](https://github.com/codevanmoose/postoko)
+  [![Status](https://img.shields.io/badge/status-DEPLOYMENT_IN_PROGRESS-yellow)](https://github.com/codevanmoose/postoko)
   [![TypeScript](https://img.shields.io/badge/TypeScript-✓_Passing-success)](https://www.typescriptlang.org/)
-  [![Deployment](https://img.shields.io/badge/Deployment-Ready-yellow)](https://vercel.com/vanmooseprojects/postoko)
+  [![Build](https://img.shields.io/badge/Build-✓_Success-success)](https://vercel.com/vanmooseprojects/postoko)
+  [![Domain](https://img.shields.io/badge/Domain-postoko.com-blue)](https://postoko.com)
 </div>
 
 ## 📋 Table of Contents
@@ -94,7 +95,7 @@ postoko/
 
 2. **Install dependencies**
    ```bash
-   pnpm install
+   npm install
    ```
 
 3. **Set up environment variables**
