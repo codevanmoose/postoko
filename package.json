@@ -26,7 +26,6 @@
     "db:push": "supabase db push",
     "db:reset": "supabase db reset",
     "db:migrate": "supabase migration new",
-    "prepare": "husky install"
   },
   "devDependencies": {
     "@playwright/test": "^1.40.0",
