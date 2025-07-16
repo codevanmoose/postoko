@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { requireAuth } from '@postoko/auth';
+import { requireAuth } from '@postoko/auth/lib/api-middleware';
 import { CaptionGenerator } from '@postoko/ai';
 import { GenerateCaptionRequest } from '@postoko/ai/types';
 

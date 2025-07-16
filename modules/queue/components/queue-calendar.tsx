@@ -5,8 +5,8 @@ import { QueueItem } from '../types';
 import { useQueueItems } from '../hooks/use-queue-items';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, getDay, isSameDay, isToday } from 'date-fns';
 import { ChevronLeft, ChevronRight, Clock, CheckCircle, XCircle } from 'lucide-react';
-import { Button } from '@postoko/ui/components/button';
-import { LoadingSpinner } from '@postoko/ui/components/loading-spinner';
+import { Button } from '../../../apps/web/src/components/ui/button';
+import { Spinner } from '../../../apps/web/src/components/ui/spinner';
 
 interface QueueCalendarProps {
   onDateClick?: (date: Date, items: QueueItem[]) => void;
@@ -53,7 +53,7 @@ export function QueueCalendar({ onDateClick }: QueueCalendarProps) {
   if (loading && items.length === 0) {
     return (
       <div className="flex justify-center items-center h-96">
-        <LoadingSpinner />
+        <Spinner />
       </div>
     );
   }
@@ -190,7 +190,7 @@ export function QueueCalendar({ onDateClick }: QueueCalendarProps) {
       {/* Loading indicator */}
       {loading && items.length > 0 && (
         <div className="flex justify-center p-4 border-t border-gray-200">
-          <LoadingSpinner size="sm" />
+          <Spinner size="sm" />
         </div>
       )}
     </div>

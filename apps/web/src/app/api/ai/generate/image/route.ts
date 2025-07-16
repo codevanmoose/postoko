@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { requireAuth } from '@postoko/auth';
+import { requireAuth } from '@postoko/auth/lib/api-middleware';
 import { ImageGenerator } from '@postoko/ai';
 import { GenerateImageRequest } from '@postoko/ai/types';
 

@@ -1,7 +1,7 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { cookies } from 'next/headers';
 import { createClient } from '@postoko/database';
-import { requireAuth } from '@postoko/auth';
+import { requireAuth } from '@postoko/auth/lib/api-middleware';
 
 export async function GET(request: NextRequest) {
   try {

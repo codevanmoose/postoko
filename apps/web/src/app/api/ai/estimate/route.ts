@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { requireAuth } from '@postoko/auth';
+import { requireAuth } from '@postoko/auth/lib/api-middleware';
 import { OpenAIClient } from '@postoko/ai';
 import { AIGenerationType, AIModel } from '@postoko/ai/types';
 

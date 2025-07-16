@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { QueueItem } from '../types';
-import { Button } from '@postoko/ui/components/button';
+import { Button } from '../../../apps/web/src/components/ui/button';
 import { useQueue } from '../context/queue-context';
 import { useSocial } from '@postoko/social';
 import { format } from 'date-fns';

@@ -14,7 +14,7 @@ export function getStripeServer() {
     }
     
     stripeServer = new Stripe(secretKey, {
-      apiVersion: '2023-08-16',
+      apiVersion: '2023-10-16',
       typescript: true,
     });
   }

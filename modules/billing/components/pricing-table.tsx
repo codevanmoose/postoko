@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '../../../apps/web/src/components/ui/button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../../../apps/web/src/components/ui/card';
 import { useBilling } from '../context/billing-context';
 import { TIER_LIMITS, PRICING } from '../types';
 import type { SubscriptionTier, PaymentInterval } from '../types';

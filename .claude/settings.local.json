@@ -32,7 +32,15 @@
       "Bash(nslookup:*)",
       "Bash(dig:*)",
       "Bash(cd:*)",
-      "Bash(./fix-workspace-deps.sh:*)"
+      "Bash(./fix-workspace-deps.sh:*)",
+      "Bash(cd:*)",
+      "Bash(cd:*)",
+      "Bash(./fix-auth-imports.sh)",
+      "Bash(./fix-ui-imports.sh:*)",
+      "Bash(cd:*)",
+      "Bash(npx tsc:*)",
+      "Bash(cd:*)",
+      "Bash(cd:*)"
     ],
     "deny": []
   }

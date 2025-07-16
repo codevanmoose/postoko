@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import { CreateScheduleRequest, TimeSlot, ScheduleType } from '../types';
-import { Button } from '@postoko/ui/components/button';
-import { Input } from '@postoko/ui/components/input';
-import { Label } from '@postoko/ui/components/label';
+import { Button } from '../../../apps/web/src/components/ui/button';
+import { Input } from '../../../apps/web/src/components/ui/input';
+import { Label } from '../../../apps/web/src/components/ui/label';
 import { useQueue } from '../context/queue-context';
 import { useSocial } from '@postoko/social';
 import { useDrive } from '@postoko/drive';

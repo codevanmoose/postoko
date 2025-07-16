@@ -14,8 +14,7 @@ export * from './components';
 
 // Lib
 export { supabaseAuth } from './lib/supabase-auth';
-export { requireAuth, getOptionalAuth } from './lib/api-middleware';
-export type { AuthenticatedRequest } from './lib/api-middleware';
+// Note: API middleware (requireAuth, getOptionalAuth) should be imported directly from './lib/api-middleware' in API routes only
 
 // Module metadata
 export const MODULE_NAME = 'auth';

@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import { useQueueItems } from '../hooks/use-queue-items';
 import { QueueItemCard } from './queue-item-card';
-import { Button } from '@postoko/ui/components/button';
-import { LoadingSpinner } from '@postoko/ui/components/loading-spinner';
+import { Button } from '../../../apps/web/src/components/ui/button';
+import { Spinner } from '../../../apps/web/src/components/ui/spinner';
 import { Calendar, Filter, RefreshCw } from 'lucide-react';
 import { QueueItemStatus } from '../types';
 import { format } from 'date-fns';
@@ -39,7 +39,7 @@ export function QueueList({
   if (loading && items.length === 0) {
     return (
       <div className="flex justify-center items-center h-64">
-        <LoadingSpinner />
+        <Spinner />
       </div>
     );
   }
@@ -158,7 +158,7 @@ export function QueueList({
       {/* Loading more indicator */}
       {loading && items.length > 0 && (
         <div className="flex justify-center py-4">
-          <LoadingSpinner size="sm" />
+          <Spinner size="sm" />
         </div>
       )}
     </div>

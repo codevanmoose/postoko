@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { Button } from '../../../apps/web/src/components/ui/button';
 import { useDrive } from '../context/drive-context';
 
 export function DriveConnectButton() {

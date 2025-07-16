@@ -56,5 +56,8 @@
       "prettier --write"
     ]
   },
-  "packageManager": "npm@9.8.1"
+  "packageManager": "npm@9.8.1",
+  "dependencies": {
+    "dotenv": "^17.2.0"
+  }
 }

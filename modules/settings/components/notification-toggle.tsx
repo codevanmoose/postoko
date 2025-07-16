@@ -1,6 +1,6 @@
 'use client';
 
-import { Switch } from '@/components/ui/switch';
+import { Switch } from '../../../apps/web/src/components/ui/switch';
 import { useNotifications } from '../hooks/use-preferences';
 import type { UpdateNotificationsDTO } from '../types';
 

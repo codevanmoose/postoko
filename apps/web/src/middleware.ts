@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { createClient } from '@postoko/database/server';
+import { createClient } from '../../../packages/database/src/server';
 
 // Routes that require authentication
 const protectedRoutes = ['/dashboard', '/profile', '/settings'];
