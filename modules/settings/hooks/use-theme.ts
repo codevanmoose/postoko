@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect } from 'react';
 import { useSettings } from '../context/settings-context';
 import type { Theme } from '../types';

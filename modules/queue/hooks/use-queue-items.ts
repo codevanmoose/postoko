@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useCallback, useEffect } from 'react';
 import { useQueue } from '../context/queue-context';
 import { QueueItem, QueueItemStatus } from '../types';

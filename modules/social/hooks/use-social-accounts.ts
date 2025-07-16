@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback } from 'react';
 import { useSocial } from '../context/social-context';
 import { SocialAccount } from '../types';
