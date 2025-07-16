@@ -12,18 +12,6 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@postoko/auth": "*",
-    "@postoko/billing": "*",
-    "@postoko/database": "*",
-    "@postoko/drive": "*",
-    "@postoko/settings": "*",
-    "@postoko/social": "*",
-    "@postoko/types": "*",
-    "@postoko/utils": "*",
-    "@postoko/queue": "*",
-    "@postoko/ai": "*",
-    "@postoko/analytics": "*",
-    "@postoko/notifications": "*",
     "@hookform/resolvers": "^3.3.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-avatar": "^1.0.4",
