@@ -6,7 +6,6 @@ import { BillingProvider } from '@postoko/billing';
 import { DriveProvider } from '@postoko/drive';
 import { SocialProvider } from '@postoko/social';
 import { QueueProvider } from '@postoko/queue';
-import { AIProvider } from '@postoko/ai';
 import '@/styles/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -71,9 +70,7 @@ export default function RootLayout({
               <DriveProvider>
                 <SocialProvider>
                   <QueueProvider>
-                    <AIProvider>
-                      {children}
-                    </AIProvider>
+                    {children}
                   </QueueProvider>
                 </SocialProvider>
               </DriveProvider>
