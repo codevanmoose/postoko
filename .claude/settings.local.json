@@ -8,7 +8,7 @@
       "Bash(git commit:*)",
       "Bash(pnpm dev:*)",
       "Bash(npm run dev:*)",
-      "Bash(npm install)",
+      "Bash(npm install:*)",
       "Bash(pnpm add:*)",
       "Bash(pnpm build:*)",
       "Bash(npm run build:*)",
@@ -26,7 +26,9 @@
       "Bash(npm run:*)",
       "Bash(bash:*)",
       "Bash(cat:*)",
-      "Bash(ls:*)"
+      "Bash(node:*)",
+      "Bash(curl:*)",
+      "Bash(python3:*)"
     ],
     "deny": []
   }

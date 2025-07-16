@@ -9,18 +9,18 @@ export class OpenAIClient {
   }
 
   private getClient(): OpenAI {
-    if (!this.getClient()) {
+    if (!this.client) {
       const apiKey = process.env.OPENAI_API_KEY;
       if (!apiKey) {
         console.warn('OPENAI_API_KEY is not set - AI features will be disabled');
         throw new Error('OPENAI_API_KEY environment variable is required');
       }
 
-      this.getClient() = new OpenAI({
+      this.client = new OpenAI({
         apiKey,
       });
     }
-    return this.getClient();
+    return this.client;
   }
 
   // Generate text using GPT models
