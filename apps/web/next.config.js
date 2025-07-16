@@ -61,6 +61,9 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [];
+  },
   async rewrites() {
     return [
       {

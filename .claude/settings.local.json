@@ -28,7 +28,9 @@
       "Bash(cat:*)",
       "Bash(node:*)",
       "Bash(curl:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(nslookup:*)",
+      "Bash(dig:*)"
     ],
     "deny": []
   }

@@ -1,6 +1,0 @@
-{
-  "buildCommand": "cd apps/web && bash vercel-build.sh",
-  "outputDirectory": "apps/web/.next",
-  "installCommand": "echo 'Skipping install'",
-  "framework": null
-}

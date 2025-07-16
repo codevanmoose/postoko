@@ -1,9 +1,8 @@
 {
   "name": "postoko",
   "version": 2,
-  "buildCommand": "cd ../.. && npm install && npm run build --filter=@postoko/web",
+  "buildCommand": "cd ../.. && npm install && cd apps/web && npm run build",
   "outputDirectory": ".next",
   "installCommand": "cd ../.. && npm install",
-  "framework": "nextjs",
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD"
+  "framework": "nextjs"
 }
