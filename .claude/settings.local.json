@@ -30,7 +30,8 @@
       "Bash(curl:*)",
       "Bash(python3:*)",
       "Bash(nslookup:*)",
-      "Bash(dig:*)"
+      "Bash(dig:*)",
+      "Bash(cd:*)"
     ],
     "deny": []
   }
