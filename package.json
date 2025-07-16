@@ -25,7 +25,7 @@
     "clean": "turbo run clean && rimraf node_modules",
     "db:push": "supabase db push",
     "db:reset": "supabase db reset",
-    "db:migrate": "supabase migration new",
+    "db:migrate": "supabase migration new"
   },
   "devDependencies": {
     "@playwright/test": "^1.40.0",
