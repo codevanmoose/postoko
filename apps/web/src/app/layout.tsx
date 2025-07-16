@@ -3,11 +3,16 @@ import { Inter } from 'next/font/google';
 import { AuthProvider } from '@postoko/auth';
 import { SettingsProvider } from '@postoko/settings';
 import { BillingProvider } from '@postoko/billing';
+import { DriveProvider } from '@postoko/drive';
+import { SocialProvider } from '@postoko/social';
+import { QueueProvider } from '@postoko/queue';
+import { AIProvider } from '@postoko/ai';
 import '@/styles/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://postoko.com'),
   title: 'Postoko - AI-Powered Perpetual Content Engine',
   description: "Drop your photo. We'll post it. Daily. The world's first perpetual content engine.",
   keywords: 'social media automation, content scheduling, AI content generation, instagram automation',
@@ -63,7 +68,15 @@ export default function RootLayout({
         <AuthProvider>
           <SettingsProvider>
             <BillingProvider>
-              {children}
+              <DriveProvider>
+                <SocialProvider>
+                  <QueueProvider>
+                    <AIProvider>
+                      {children}
+                    </AIProvider>
+                  </QueueProvider>
+                </SocialProvider>
+              </DriveProvider>
             </BillingProvider>
           </SettingsProvider>
         </AuthProvider>
