@@ -9,9 +9,9 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@postoko/database": "workspace:*",
-    "@postoko/types": "workspace:*",
-    "@postoko/utils": "workspace:*",
+    "@postoko/database": "*",
+    "@postoko/types": "*",
+    "@postoko/utils": "*",
     "@stripe/stripe-js": "^2.2.0",
     "stripe": "^14.10.0",
     "react": "^18.2.0",

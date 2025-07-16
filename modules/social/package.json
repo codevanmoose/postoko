@@ -10,9 +10,9 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@postoko/database": "workspace:*",
-    "@postoko/types": "workspace:*",
-    "@postoko/utils": "workspace:*",
+    "@postoko/database": "*",
+    "@postoko/types": "*",
+    "@postoko/utils": "*",
     "crypto-js": "^4.2.0",
     "date-fns": "^2.30.0"
   },

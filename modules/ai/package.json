@@ -10,10 +10,10 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@postoko/database": "workspace:*",
-    "@postoko/types": "workspace:*",
-    "@postoko/utils": "workspace:*",
-    "@postoko/billing": "workspace:*",
+    "@postoko/database": "*",
+    "@postoko/types": "*",
+    "@postoko/utils": "*",
+    "@postoko/billing": "*",
     "openai": "^4.24.1",
     "sharp": "^0.33.1",
     "zod": "^3.22.4"

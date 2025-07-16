@@ -13,10 +13,10 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@postoko/database": "workspace:*",
-    "@postoko/types": "workspace:*",
-    "@postoko/utils": "workspace:*",
-    "@postoko/billing": "workspace:*",
+    "@postoko/database": "*",
+    "@postoko/types": "*",
+    "@postoko/utils": "*",
+    "@postoko/billing": "*",
     "googleapis": "^128.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

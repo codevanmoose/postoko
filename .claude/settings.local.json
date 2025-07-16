@@ -31,7 +31,8 @@
       "Bash(python3:*)",
       "Bash(nslookup:*)",
       "Bash(dig:*)",
-      "Bash(cd:*)"
+      "Bash(cd:*)",
+      "Bash(./fix-workspace-deps.sh:*)"
     ],
     "deny": []
   }

@@ -9,9 +9,9 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@postoko/database": "workspace:*",
-    "@postoko/types": "workspace:*",
-    "@postoko/utils": "workspace:*",
+    "@postoko/database": "*",
+    "@postoko/types": "*",
+    "@postoko/utils": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

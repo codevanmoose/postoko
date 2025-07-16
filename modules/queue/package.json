@@ -14,11 +14,11 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@postoko/database": "workspace:*",
-    "@postoko/types": "workspace:*",
-    "@postoko/utils": "workspace:*",
-    "@postoko/drive": "workspace:*",
-    "@postoko/social": "workspace:*",
+    "@postoko/database": "*",
+    "@postoko/types": "*",
+    "@postoko/utils": "*",
+    "@postoko/drive": "*",
+    "@postoko/social": "*",
     "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.0",
     "node-cron": "^3.0.3"
