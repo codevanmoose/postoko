@@ -1,6 +1,8 @@
 {
+  "framework": "nextjs",
+  "installCommand": "npm install",
   "buildCommand": "turbo run build --filter=@postoko/web",
   "outputDirectory": "apps/web/.next",
-  "installCommand": "npm install",
-  "framework": "nextjs"
+  "devCommand": "turbo run dev --filter=@postoko/web",
+  "ignoreCommand": "npx turbo-ignore"
 }
