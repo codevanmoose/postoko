@@ -13,8 +13,6 @@ const nextConfig = {
     '@postoko/utils',
     '@postoko/queue',
     '@postoko/ai',
-    '@postoko/analytics',
-    '@postoko/notifications',
   ],
   images: {
     domains: [
@@ -65,12 +63,7 @@ const nextConfig = {
     return [];
   },
   async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/:path*`,
-      },
-    ];
+    return [];
   },
 };
 
