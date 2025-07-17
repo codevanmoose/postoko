@@ -7,14 +7,14 @@ export const dynamic = 'force-dynamic';
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const authResult = await requireAuth(request);
     if (authResult instanceof NextResponse) return authResult;
     
     const { user } = authResult;
-    const { id } = params;
+    const { id } = await params;
     const body = await request.json();
     
     const { is_active } = body;

@@ -9,14 +9,14 @@ export const dynamic = 'force-dynamic';
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const authResult = await requireAuth(request);
     if (authResult instanceof NextResponse) return authResult;
     
     const { user } = authResult;
-    const folderId = params.id;
+    const { id: folderId } = await params;
     const supabase = createClient();
     
     // Get monitored folder with account
@@ -80,14 +80,14 @@ export async function POST(
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const authResult = await requireAuth(request);
     if (authResult instanceof NextResponse) return authResult;
     
     const { user } = authResult;
-    const folderId = params.id;
+    const { id: folderId } = await params;
     const supabase = createClient();
     
     // Verify ownership

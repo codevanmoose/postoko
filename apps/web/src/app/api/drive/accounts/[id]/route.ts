@@ -9,14 +9,14 @@ export const dynamic = 'force-dynamic';
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const authResult = await requireAuth(request);
     if (authResult instanceof NextResponse) return authResult;
     
     const { user } = authResult;
-    const accountId = params.id;
+    const { id: accountId } = await params;
     const supabase = createClient();
     
     // Verify account belongs to user
