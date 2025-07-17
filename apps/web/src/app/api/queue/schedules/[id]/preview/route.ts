@@ -3,6 +3,10 @@ import { requireAuth } from '@postoko/auth/lib/api-middleware';
 import { Scheduler } from '@postoko/queue/server';
 import { createClient } from '@postoko/database';
 
+
+export const dynamic = 'force-dynamic';
+
+
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }

@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@postoko/auth/lib/api-middleware';
 import { QueueManager, QueueProcessor } from '@postoko/queue/server';
 
+export const dynamic = 'force-dynamic';
+
+
 export async function GET(request: NextRequest) {
   try {
     const authResult = await requireAuth(request);

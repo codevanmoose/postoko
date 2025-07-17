@@ -40,7 +40,11 @@
       "Bash(cd:*)",
       "Bash(npx tsc:*)",
       "Bash(cd:*)",
-      "Bash(cd:*)"
+      "Bash(cd:*)",
+      "WebFetch(domain:vercel.com)",
+      "Bash(./scripts/fix-api-routes.sh:*)",
+      "Bash(./add-dynamic-export.sh:*)",
+      "Bash(./fix-formatting.sh)"
     ],
     "deny": []
   }

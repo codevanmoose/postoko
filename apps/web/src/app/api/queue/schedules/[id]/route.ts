@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@postoko/auth/lib/api-middleware';
 import { Scheduler } from '@postoko/queue/server';
 
+export const dynamic = 'force-dynamic';
+
+
 export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } }

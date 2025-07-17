@@ -3,6 +3,9 @@ import { requireAuth } from '@postoko/auth/lib/api-middleware';
 import { QueueManager } from '@postoko/queue/server';
 import { isValid, parseISO } from 'date-fns';
 
+export const dynamic = 'force-dynamic';
+
+
 export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } }

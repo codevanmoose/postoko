@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@postoko/auth/lib/api-middleware';
 import { createClient } from '@postoko/database';
+
 import { DriveClient } from '@postoko/drive/server';
 import type { AddMonitoredFolderRequest } from '@postoko/drive';
+
+export const dynamic = 'force-dynamic';
+
 
 export async function POST(request: NextRequest) {
   try {

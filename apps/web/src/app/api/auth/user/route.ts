@@ -3,6 +3,8 @@ import { cookies } from 'next/headers';
 import { createClient } from '@postoko/database';
 import { requireAuth } from '@postoko/auth/lib/api-middleware';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   try {
     const authResult = await requireAuth(request);

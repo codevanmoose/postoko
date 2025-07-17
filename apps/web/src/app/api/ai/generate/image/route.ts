@@ -3,6 +3,9 @@ import { requireAuth } from '@postoko/auth/lib/api-middleware';
 import { ImageGenerator } from '@postoko/ai';
 import { GenerateImageRequest } from '@postoko/ai/types';
 
+export const dynamic = 'force-dynamic';
+
+
 export async function POST(request: NextRequest) {
   try {
     // Authenticate user

@@ -3,6 +3,9 @@ import { requireAuth } from '@postoko/auth/lib/api-middleware';
 import { OpenAIClient } from '@postoko/ai';
 import { AIGenerationType, AIModel } from '@postoko/ai/types';
 
+export const dynamic = 'force-dynamic';
+
+
 // POST /api/ai/estimate - Get cost estimate for AI operations
 export async function POST(request: NextRequest) {
   try {

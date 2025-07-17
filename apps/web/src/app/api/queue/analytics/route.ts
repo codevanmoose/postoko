@@ -3,6 +3,9 @@ import { requireAuth } from '@postoko/auth/lib/api-middleware';
 import { AnalyticsEngine } from '@postoko/queue/server';
 import { isValid, parseISO, subDays } from 'date-fns';
 
+export const dynamic = 'force-dynamic';
+
+
 export async function GET(request: NextRequest) {
   try {
     const authResult = await requireAuth(request);

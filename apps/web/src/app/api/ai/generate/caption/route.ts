@@ -3,6 +3,9 @@ import { requireAuth } from '@postoko/auth/lib/api-middleware';
 import { CaptionGenerator } from '@postoko/ai';
 import { GenerateCaptionRequest } from '@postoko/ai/types';
 
+export const dynamic = 'force-dynamic';
+
+
 export async function POST(request: NextRequest) {
   try {
     // Authenticate user

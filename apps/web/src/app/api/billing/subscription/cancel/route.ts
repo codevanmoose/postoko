@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@postoko/auth/lib/api-middleware';
 import { subscriptionManager } from '@postoko/billing';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     const authResult = await requireAuth(request);

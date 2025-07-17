@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@postoko/auth/lib/api-middleware';
 import { createClient } from '@postoko/database';
+
 import { DriveClient, CacheManager } from '@postoko/drive/server';
+
+export const dynamic = 'force-dynamic';
+
 
 export async function GET(
   request: NextRequest,

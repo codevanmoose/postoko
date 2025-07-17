@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@postoko/auth/lib/api-middleware';
 import { createClient } from '@postoko/database';
+
 import { BrandVoice, CreateBrandVoiceRequest } from '@postoko/ai/types';
+
+export const dynamic = 'force-dynamic';
+
 
 // GET /api/ai/brand-voices - List user's brand voices
 export async function GET(request: NextRequest) {
