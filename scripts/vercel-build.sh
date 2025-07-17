@@ -1,19 +1,17 @@
-#!/bin/bash
+#\!/bin/bash
+set -e
 
-# Replace workspace:* with file: protocol for Vercel compatibility
-echo "Preparing for Vercel build..."
+echo "Starting Postoko build for Vercel..."
 
-# Find all package.json files and replace workspace:* with file: paths
-find . -name "package.json" -not -path "*/node_modules/*" -exec sed -i.bak 's/"workspace:\*"/"file:..\/..\/packages\/\*"/g' {} \;
-find . -name "package.json" -not -path "*/node_modules/*" -exec sed -i.bak 's/"@postoko\/database": "file:..\/..\/packages\/\*"/"@postoko\/database": "file:..\/..\/packages\/database"/g' {} \;
-find . -name "package.json" -not -path "*/node_modules/*" -exec sed -i.bak 's/"@postoko\/types": "file:..\/..\/packages\/\*"/"@postoko\/types": "file:..\/..\/packages\/types"/g' {} \;
-find . -name "package.json" -not -path "*/node_modules/*" -exec sed -i.bak 's/"@postoko\/utils": "file:..\/..\/packages\/\*"/"@postoko\/utils": "file:..\/..\/packages\/utils"/g' {} \;
+# Install dependencies if not already installed
+if [ \! -d "node_modules" ]; then
+  echo "Installing dependencies..."
+  npm install
+fi
 
-# Clean up backup files
-find . -name "*.bak" -delete
+# Build the web app with environment variable to disable file tracing
+echo "Building web app..."
+export NEXT_PRIVATE_STANDALONE=true
+npm run build -- --filter=@postoko/web
 
-# Install dependencies
-npm install --legacy-peer-deps
-
-# Build the web app
-cd apps/web && npm run build
+echo "Build completed successfully\!"

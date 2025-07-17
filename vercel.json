@@ -1,12 +1,6 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "turbo run build --filter=@postoko/web",
   "outputDirectory": "apps/web/.next",
   "installCommand": "npm install",
-  "framework": "nextjs",
-  "rootDirectory": ".",
-  "functions": {
-    "apps/web/src/app/api/**/*.ts": {
-      "maxDuration": 30
-    }
-  }
+  "framework": "nextjs"
 }
