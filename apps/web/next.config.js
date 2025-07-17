@@ -1,10 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
-  experimental: {
-    outputFileTracingRoot: require('path').join(__dirname, '../../'),
-  },
+  outputFileTracingRoot: require('path').join(__dirname, '../../'),
   transpilePackages: [
     '@postoko/auth',
     '@postoko/billing', 

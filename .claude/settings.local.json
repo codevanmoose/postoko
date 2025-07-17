@@ -44,7 +44,8 @@
       "WebFetch(domain:vercel.com)",
       "Bash(./scripts/fix-api-routes.sh:*)",
       "Bash(./add-dynamic-export.sh:*)",
-      "Bash(./fix-formatting.sh)"
+      "Bash(./fix-formatting.sh)",
+      "Bash(npm update:*)"
     ],
     "deny": []
   }
