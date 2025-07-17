@@ -45,7 +45,8 @@
       "Bash(./scripts/fix-api-routes.sh:*)",
       "Bash(./add-dynamic-export.sh:*)",
       "Bash(./fix-formatting.sh)",
-      "Bash(npm update:*)"
+      "Bash(npm update:*)",
+      "Bash(cd:*)"
     ],
     "deny": []
   }
