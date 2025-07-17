@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
@@ -9,8 +9,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Container } from '@/components/layout/container';
 import { useAuth } from '@postoko/auth';
+import { Spinner } from '@/components/ui/spinner';
 
-export default function LoginPage() {
+function LoginPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { signIn, signInWithGoogle, loading, error } = useAuth();
@@ -160,5 +161,17 @@ export default function LoginPage() {
         </Card>
       </Container>
     </main>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <main className="flex min-h-screen flex-col items-center justify-center">
+        <Spinner />
+      </main>
+    }>
+      <LoginPageContent />
+    </Suspense>
   );
 }

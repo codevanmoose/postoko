@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useRequireAuth } from '@postoko/auth';
 import { useBilling, PricingTable, formatAmount, TIER_LIMITS } from '@postoko/billing';
@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Spinner } from '@/components/ui/spinner';
 
-export default function BillingPage() {
+function BillingPageContent() {
   useRequireAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -184,5 +184,17 @@ export default function BillingPage() {
         </div>
       </div>
     </Container>
+  );
+}
+
+export default function BillingPage() {
+  return (
+    <Suspense fallback={
+      <Container className="flex items-center justify-center min-h-screen">
+        <Spinner />
+      </Container>
+    }>
+      <BillingPageContent />
+    </Suspense>
   );
 }

@@ -2,22 +2,15 @@
 
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/layout/container';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useAuth, ProtectedRoute } from '@postoko/auth';
 import { Plus, CheckCircle, Calendar, Sparkles, Image, Settings, BarChart3, Clock, AlertTriangle } from 'lucide-react';
+import { Spinner } from '@/components/ui/spinner';
 
-export default function DashboardPage() {
-  return (
-    <ProtectedRoute>
-      <DashboardContent />
-    </ProtectedRoute>
-  );
-}
-
-function DashboardContent() {
+function DashboardContentInner() {
   const { user, signOut } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -214,5 +207,27 @@ function DashboardContent() {
         </div>
       </Container>
     </main>
+  );
+}
+
+function DashboardContent() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen">
+        <Container className="flex items-center justify-center min-h-screen">
+          <Spinner />
+        </Container>
+      </main>
+    }>
+      <DashboardContentInner />
+    </Suspense>
+  );
+}
+
+export default function DashboardPage() {
+  return (
+    <ProtectedRoute>
+      <DashboardContent />
+    </ProtectedRoute>
   );
 }
